@@ -19,7 +19,7 @@
                 @endif" width="50" height="50" class="d-inline-block align-text-top">
             </a>
             <div class="text-white">
-                <div class="fw-bolder subtitle-2">CV. Arta Mandiri</div>
+                <div class="fw-bolder subtitle-2">PT Adarma Mandiri</div>
                 <div class="lead subtitle-1">Agricultural And Industrial Export Company</div>
             </div>
         </div>
@@ -33,7 +33,7 @@
             </li>
             <li class="nav-item text-center">
                 <a class="nav-link text-white" aria-current="page" href="{{ url('/#profil') }}">Profile</a>
-            </li>
+            </li>s
             <li class="nav-item text-center">
                 <a class="nav-link text-white rounded-3" aria-current="page" href="{{ route('product') }}">Product</a>
             </li>
