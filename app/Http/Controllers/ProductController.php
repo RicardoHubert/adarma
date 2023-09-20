@@ -137,8 +137,13 @@ class ProductController extends Controller
         }
 
         if ($request->file('image')) {
+            // Store the new image
             $validated['image'] = $request->file('image')->store('product');
-            unlink(public_path('storage/' . $product->image));
+        
+            // Check if the old image file exists before attempting to delete it
+            if (file_exists(public_path('storage/' . $product->image))) {
+                unlink(public_path('storage/' . $product->image));
+            }
         }
         
         $validated['slug'] = str_replace(' ', '-', strtolower($validated['slug']));
