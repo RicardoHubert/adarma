@@ -65,8 +65,11 @@ class DashboardController extends Controller
 
         if ($request->file('image')) {
             $validated['image'] = $request->file('image')->store('profile-image');
-            if ($user->image !== null) {
-                unlink(public_path('storage/' . $user->image));
+            // if ($user->image !== null) {
+            //     unlink(public_path('storage/' . $user->image));
+            // }
+            if (file_exists(public_path('storage/' . $landingpage->image))) {
+                unlink(public_path('storage/' . $landingpage->image));
             }
         }
 
@@ -178,13 +181,19 @@ class DashboardController extends Controller
         } else {
             if ($request->file('img_logo')) {
                 $validated['img_logo'] = $request->file('img_logo')->store('landingpage');
-                if ($landingpage->img_logo != null) {
-                    unlink(public_path('storage/' . $landingpage->img_logo));
+                // if ($landingpage->img_logo != null) {
+                //     unlink(public_path('storage/' . $landingpage->img_logo));
+                // }
+                if (file_exists(public_path('storage/' . $landingpage->image))) {
+                    unlink(public_path('storage/' . $landingpage->image));
                 }
             }
             if ($request->file('img_landing')) {
                 $validated['img_landing'] = $request->file('img_landing')->store('landingpage');
-                if ($landingpage->img_landing != null) {
+                // if ($landingpage->img_landing != null) {
+                //     unlink(public_path('storage/' . $landingpage->img_landing));
+                // }
+                if (file_exists(public_path('storage/' . $landingpage->img_landing))) {
                     unlink(public_path('storage/' . $landingpage->img_landing));
                 }
             }
@@ -244,7 +253,7 @@ class DashboardController extends Controller
                     unlink(public_path('storage/' . $carousel->img_second));
                 }
             }
-            if ($request->file('img_third')) {
+            if ($request->file('img_third')) { 
                 $validated['img_third'] = $request->file('img_third')->store('carousel');
                 if ($carousel->img_third != null) {
                     unlink(public_path('storage/' . $carousel->img_third));
