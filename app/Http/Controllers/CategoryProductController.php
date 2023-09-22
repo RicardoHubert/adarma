@@ -115,7 +115,9 @@ class CategoryProductController extends Controller
 
         if ($request->file('image')) {
             $validated['image'] = $request->file('image')->store('category-product');
-            unlink(public_path('storage/' . $category->image));
+                if (file_exists(public_path('storage/' . $category->image))) {
+                unlink(public_path('storage/' . $category->image));
+            }
         }
 
         CategoryProduct::where('id', $category->id)->update($validated);
