@@ -33,7 +33,7 @@
             </li>
             <li class="nav-item text-center">
                 <a class="nav-link text-white" aria-current="page" href="{{ url('/#profil') }}">Profile</a>
-            </li>s
+            </li>
             <li class="nav-item text-center">
                 <a class="nav-link text-white rounded-3" aria-current="page" href="{{ route('product') }}">Product</a>
             </li>
