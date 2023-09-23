@@ -80,6 +80,8 @@ Route::group(['prefix' => 'dashboard', 'middleware' => ['auth', 'role:super_admi
 
 // Dashboard CRUD Landing Page
 Route::group(['prefix' => 'dashboard', 'middleware' => ['auth', 'role:super_admin|admin']], function () {
+    Route::get('/subscribers_news', [DashboardController::class, 'getsubs'])->name('subscribers_news.index');
+    Route::delete('/subscribers_news/{id}', 'DashboardController@subscribers_news_destroy')->name('subscribers_news.destroy');
     Route::get('landingpage', [DashboardController::class, 'landingpage'])->name('landingpage');
     Route::post('landingpage', [DashboardController::class, 'landingpage_store'])->name('landingpage.store');
     Route::delete('landingpage', [DashboardController::class, 'landingpage_destroy'])->name('landingpage.destroy');

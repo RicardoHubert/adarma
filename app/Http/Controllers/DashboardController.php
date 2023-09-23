@@ -10,6 +10,7 @@ use App\Model\ProductRequest;
 use App\Model\Role;
 use App\Model\Writer;
 use App\User;
+use App\Model\subscribers_news;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -290,5 +291,19 @@ class DashboardController extends Controller
         $editors = User::where('role_id', 2)->get();
 
         return view('dashboard.article.editor.index', compact('title', 'landingpage', 'editors'));
+    }
+    public function getsubs()
+    {
+    $title = 'Subscribers';
+    $subscribers_news = subscribers_news::get();
+    // Pastikan $subscribers_news adalah dalam bentuk array atau objek yang dapat dihitung.
+    // Jika $subscribers_news adalah objek tunggal, Anda perlu membuatnya menjadi array.
+    return view('dashboard.subscribers_news.index', compact('title', 'subscribers_news'));
+    }
+public function subscribers_news_destroy($id){
+        $subscribers_news = subscribers_news::find($id);
+        $subscribers_news->delete();
+
+        return redirect()->route('subscribers_news.index')->with('success', 'Subscribers berhasil dihapus!');
     }
 }
