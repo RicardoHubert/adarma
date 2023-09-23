@@ -50,19 +50,21 @@
 
             <div class="col-md-3 mt-5">
                 <div class="text-white">
-                    <p class="fw-bold subtitle-1">Feedback</p>
-                    <p class="subtitle-1">Questions or suggestions,
+                    <p class="fw-bold subtitle-1">Newsletter</p>
+                    <!-- <p class="subtitle-1">Questions or suggestions,
                         can be submitted via
                         email
-                        by the following column</p>
-                    <form action="">
-                        <div class="input-group">
-                            <input type="text" name="email-send" class="form-control subtitle-1 input-email" placeholder="Email Address" style="border-radius: 25px 0 0 25px; box-shadow: none; border: none;">
-                            <button class="btn bg-white border-0 input-email" type="button" id="button-addon2" style="border-radius: 0 25px 25px 0;">
-                                <img src="{{ asset('images/button-send.png') }}" alt="" class="" width="30">
-                            </button>
-                        </div>
-                    </form>
+                        by the following column</p> -->
+                        <p class="subtitle-1">Unlock access to special insights and offers by subscribing to our newsletter</p>
+                        <form action="{{ route('newsletter') }}" method="POST">
+                        @csrf <!-- Add this line to include the CSRF token -->
+                            <div class="input-group">
+                                <input type="text" name="subscribes" class="form-control subtitle-1 input-email" placeholder="Email Address" style="border-radius: 25px 0 0 25px; box-shadow: none; border: none;">
+                                <button class="btn bg-white border-0 input-email" type="button" id="button-addon2" style="border-radius: 0 25px 25px 0;">
+                                    <img src="{{ asset('images/button-send.png') }}" alt="" class="" width="30">
+                                </button>
+                            </div>
+                        </form>
                 </div>
             </div>
 

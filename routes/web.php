@@ -8,6 +8,7 @@ use App\Http\Controllers\FrontEndController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProductRequestController;
 use App\Http\Controllers\WriterController;
+use App\Http\Controllers\GuestController;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -29,6 +30,14 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [FrontEndController::class, 'home'])->name('home');
 
+// Route::post('/submitemails', [DashboardController::class, 'emailputfrontend'])->name('newsletter');
+
+// Route::group(['prefix' =>'home'], function () {
+    Route::post('/submitemails/post', [GuestController::class, 'emailputfrontend'])->name('newsletter');
+    // Route::get('/article/show/{article:slug}', [ArticleController::class, 'show'])->name('article.show');
+    // Route::delete('/article/destroy/{article:slug}', [ArticleController::class, 'destroy'])->name('article.destroy');
+// });
+
 Route::get('/product', [FrontEndController::class, 'product'])->name('product');
 Route::get('/product', [FrontEndController::class, 'product'])->name('product');
 Route::get('/product/{product:slug}', [FrontEndController::class, 'product_show'])->name('product.show');
@@ -45,15 +54,15 @@ Route::group(['middleware' => ['auth']], function () {
 });
 
 // Dashboard General User
-Route::group(['prefix' => 'dashboard', 'middleware' => ['auth']], function () {    
+Route::group(['prefix' => 'dashboard', 'middleware' => ['auth']], function () {
     Route::get('index', [DashboardController::class, 'index'])->name('dashboard');
-    
+
     // Profile
     Route::get('profile', [DashboardController::class, 'profile'])->name('profile');
     Route::put('profile', [DashboardController::class, 'profile_update'])->name('profile.update');
     Route::delete('profile', [DashboardController::class, 'profile_image_destroy'])->name('profile.image.destroy');
     Route::put('password', [DashboardController::class, 'password'])->name('password');
-    
+
     // Storage Link
     Route::get('/storage-link', function () {
         Artisan::call('storage:link');
@@ -61,10 +70,10 @@ Route::group(['prefix' => 'dashboard', 'middleware' => ['auth']], function () {
 });
 
 // Dashboard Roles User
-Route::group(['prefix' => 'dashboard', 'middleware' => ['auth', 'role:super_admin|admin']], function () {    
+Route::group(['prefix' => 'dashboard', 'middleware' => ['auth', 'role:super_admin|admin']], function () {
     Route::get('users', [DashboardController::class, 'users'])->name('users');
 });
-Route::group(['prefix' => 'dashboard', 'middleware' => ['auth', 'role:super_admin']], function () {    
+Route::group(['prefix' => 'dashboard', 'middleware' => ['auth', 'role:super_admin']], function () {
     Route::get('users/roles/{id}/edit', [DashboardController::class, 'roles_edit'])->name('roles.edit');
     Route::put('users/roles/{id}/update', [DashboardController::class, 'roles_update'])->name('roles.update');
 });
@@ -74,7 +83,7 @@ Route::group(['prefix' => 'dashboard', 'middleware' => ['auth', 'role:super_admi
     Route::get('landingpage', [DashboardController::class, 'landingpage'])->name('landingpage');
     Route::post('landingpage', [DashboardController::class, 'landingpage_store'])->name('landingpage.store');
     Route::delete('landingpage', [DashboardController::class, 'landingpage_destroy'])->name('landingpage.destroy');
-    
+
     Route::post('landingpage/carousel', [DashboardController::class, 'carousel'])->name('landingpage.carousel');
     Route::delete('landingpage/carousel', [DashboardController::class, 'carousel_destroy'])->name('landingpage.carousel.destroy');
 });
@@ -127,7 +136,7 @@ Route::group(['prefix' => 'dashboard', 'middleware' => ['auth', 'role:super_admi
     Route::get('/product/{id}/edit', [ProductController::class, 'edit'])->name('product.edit');
     Route::put('/product/{id}/update', [ProductController::class, 'update'])->name('product.update');
     Route::delete('/product/{id}/destroy', [ProductController::class, 'destroy'])->name('product.destroy');
-    
+
     // Dashboard CRUD Product Category
     Route::get('/category-product', [CategoryProductController::class, 'index'])->name('category_product.index');
     Route::get('/category-product/create', [CategoryProductController::class, 'create'])->name('category_product.create');
@@ -136,7 +145,7 @@ Route::group(['prefix' => 'dashboard', 'middleware' => ['auth', 'role:super_admi
     Route::get('/category-product/{id}/edit', [CategoryProductController::class, 'edit'])->name('category_product.edit');
     Route::put('/category-product/{id}/update', [CategoryProductController::class, 'update'])->name('category_product.update');
     Route::delete('/category-product/{id}/destroy', [CategoryProductController::class, 'destroy'])->name('category_product.destroy');
-    
+
     // Dashboard CRUD Product Request
     Route::get('product/request', [ProductRequestController::class, 'index'])->name('product.request.index');
     Route::get('product/{id}/request/show', [ProductRequestController::class, 'show'])->name('product.request.show');

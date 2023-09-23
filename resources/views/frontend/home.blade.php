@@ -95,7 +95,11 @@
         </div>
     </div>
     {{-- carousell end --}}
-
+    @if(session('guest_bisa'))
+<div class="alert alert-success">
+    {{ session('guest_bisa') }}
+</div>
+@endif
     {{-- <section style="background-image: url(@if (isset($landingpage->img_landing)) 
             {{ 'storage/' . $landingpage->img_landing }}
         @else    

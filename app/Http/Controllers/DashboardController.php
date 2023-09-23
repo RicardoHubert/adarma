@@ -20,18 +20,6 @@ class DashboardController extends Controller
     {
         $this->middleware('auth');
     }
-
-    // public function emailputfrontend()
-    // {
-    //     $validated = request()->validate([
-    //         'email' => 'required|string',
-    //     ]);
-
-    //     // Email::create($validated);
-
-    //     return redirect()->route('/')->with('success', 'Terima Kasih, Tim marketing akan segera melakukan followup !!');
-    // }
-
     public function index()
     {
         $title = 'Dashboard';
