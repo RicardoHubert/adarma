@@ -1,9 +1,9 @@
-<footer class="bg-green mt-5 mt-auto">
+<footer class="mt-5 mt-auto" style="background-color:#00D866;">
     <div class="container">
         <div class="row justify-content-md-between pb-5">
             <div class="col-md-3 col mt-5 d-flex flex-md-column justify-content-between justify-content-md-start align-items-center">
                 <div class="d-flex justify-content-center">
-                    <img src="{{ asset('images/logo.png') }}" class="logo-responsive-foot" width="70" height="70">
+                    <img src="{{ asset('images/logo-4nobg.png') }}" class="logo-responsive-foot" width="160" height="70">
                 </div>
                 <div class="d-flex mt-md-4">
                     <a href="https://www.instagram.com/" target="_blank" class="mx-3" style="text-decoration: none; color:black;">
