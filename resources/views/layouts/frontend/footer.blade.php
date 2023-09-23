@@ -2,7 +2,7 @@
     <div class="container">
         <div class="row justify-content-md-between pb-5">
             <div class="col-md-3 col mt-5 d-flex flex-md-column justify-content-between justify-content-md-start align-items-center">
-                <div class="d-flex justify-content-center">
+                <div class="d-flex justify-content-center logo-responsive-foot">
                     <img src="{{ asset('images/logo-4nobg.png') }}" class="logo-responsive-foot" width="160" height="70">
                 </div>
                 <div class="d-flex mt-md-4">
@@ -55,15 +55,17 @@
                         can be submitted via
                         email
                         by the following column</p>
-                    <div class="input-group">
-                        <input type="text" name="email-send" class="form-control subtitle-1 input-email" placeholder="Email Address" style="border-radius: 25px 0 0 25px; box-shadow: none; border: none;">
-                        <button class="btn bg-white border-0 input-email" type="button" id="button-addon2"  style="border-radius: 0 25px 25px 0;">
-                            <img src="{{ asset('images/button-send.png') }}" alt="" class="" width="30">
-                        </button>
-                    </div>
+                    <form action="">
+                        <div class="input-group">
+                            <input type="text" name="email-send" class="form-control subtitle-1 input-email" placeholder="Email Address" style="border-radius: 25px 0 0 25px; box-shadow: none; border: none;">
+                            <button class="btn bg-white border-0 input-email" type="button" id="button-addon2" style="border-radius: 0 25px 25px 0;">
+                                <img src="{{ asset('images/button-send.png') }}" alt="" class="" width="30">
+                            </button>
+                        </div>
+                    </form>
                 </div>
             </div>
-            
+
         </div>
     </div>
 </footer>
