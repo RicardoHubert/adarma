@@ -11,13 +11,13 @@
     </a>
     <div class="collapse navbar-collapse bg-navbar-responsive" id="navbarTogglerDemo03">
         <div class="d-flex me-auto my-2">
-            <a class="navbar-brand hidden-responsive" href="{{ url('/') }}">
+            <!-- <a class="navbar-brand hidden-responsive" href="{{ url('/') }}">
                 <img src="@if (isset($landingpage->img_logo))
                     {{ asset('storage/' . $landingpage->img_logo) }}
                 @else
                     {{ asset('images/logo.png') }}
-                @endif" width="50" height="50" class="d-inline-block align-text-top">
-            </a>
+                @endif" width="150" height="50" class="d-inline-block align-text-top">
+            </a> -->
             <div class="text-white">
                 <div class="fw-bolder subtitle-2">PT Adarma Mandiri</div>
                 <div class="lead subtitle-1">Agricultural And Industrial Export Company</div>
