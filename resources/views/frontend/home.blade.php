@@ -83,7 +83,8 @@
                                 @if (isset($landingpage->text_landing_small))
                                     {{ $landingpage->text_landing_small }}
                                 @else
-                                    The raw materials we use are genuine coconut shells taken from local Farm with guaranteed quality                                
+                                Our product original from Indonesia that delivers culture of nusantara
+                            
                                 @endif
                             </p>
                             <a href="#about" class="btn btn-lg bg-light fw-bold my-5 btn-about-us"><span class="text-green">About Us</span></a>
@@ -111,7 +112,7 @@
             <div class="text-white py-landing">
                 <div class="col-md-8">
                     <h1 class="fw-bold fs-md-1 fs-landing">2 High Quality Product from trusted Farmer</h1>
-                    <p>The raw materials we use are genuine coconut shells taken from local Farm with guaranteed quality</p>
+                    <p>Our product original from Indonesia that delivers culture of nusantara</p>
                     <a href="#about" class="btn btn-lg bg-light fw-bold my-5 p-landing"><span class="text-green">About Us</span></a>
                 </div>
             </div>
@@ -121,8 +122,8 @@
     <section class="container" id="about">
         <div class="py-5">
             <div class="text-center">
-                <h1 class="title-1">WELCOME TO <span class="text-green">ADARMA MANDIRI</span> COMPANY</h1>
-                <p class="subtitle-1">Indonesian Argicultural Trading Company</p>
+                <h1 class="title-1">WELCOME TO <span class="text-green">ADARMA MANDIRI NUSANTARA</span> COMPANY</h1>
+                <p class="subtitle-1">Indonesian Argicultural & Manufacture Trading Company</p>
             </div>
         </div>
     </section>
@@ -136,7 +137,7 @@
                     <div class="card p-5 rounded-shadow-card">
                         <div class="card-body">
                             <h1 class="fw-bolder title-1 pb-3">About Us</h1>
-                            <p class="card-text subtitle-1">In the beginning PT Arta Mandiri was enganged in manufacturing where we processed derivative Agricultural and Industrial Product. After that our company growing toour product plantations, to process more derivate products.</p>
+                            <p class="card-text subtitle-1">Adarma Mandiri Nusantara is an Indonesian export company engaged in agricultural and manufacturing commodities that have the best product value and benefits for global consumer needs.</p>
                         </div>
                     </div>
                 </div>
@@ -162,13 +163,8 @@
                             <div class="card-body text-center">
                                 <img src="images/vision.png" class="img-fluid" style="width: 25%;">
                                 <h1 class="fw-bolder title-1 pb-3 text-green mt-3">Vision</h1>
-                                <p class="card-text text-secondary subtitle-1">To Become the largest <br>
-                                    exportercompany from Indonesia that
-                                    can 
-                                    bring Indonesia coconut
-                                    derivative products into superior
-                                    products and have high value in the
-                                    world</p>
+                                <p class="card-text text-secondary subtitle-1" style="text-align:justify;">
+                                 To become a world-class exporter company capable of bringing Indonesian agricultural and manufacturing commodities into superior and high-value products in the world in a sustainable manner.</p>
                             </div>
                         </div>
                     </div>
@@ -176,17 +172,10 @@
                         <div class="card pt-5 px-3 rounded-shadow-card">
                             <div class="card-body text-center height-card-home">
                                 <img src="images/mission.png" class="img-fluid" style="width: 25%;">
+                                <br><br>
                                 <h1 class="fw-bolder title-1 pb-3 text-green mt-3">Mission</h1>
-                                <p class="card-text text-secondary subtitle-1">1. Providing coconut derivative
-                                    products with the best Quality original
-                                    from Indonesia specifcally for ousr
-                                    customers and trying to fulfill requests
-                                    according to customer wisher because
-                                    customer satisfaction our priority. 
-                                    <br><br>
-                                    2. Can utilize coconut derivativesbas a
-                                    substitute for natural ingrediemnts for
-                                    daily needs in a sustainable manner</p>
+                                <p class="card-text text-secondary subtitle-1" style="text-align:justify;">
+                                Provide high quality agricultural and manufactured commodities to consumers worldwide in a sustainable and economical manner.
                             </div>
                         </div>
                     </div>
@@ -195,7 +184,7 @@
                             <div class="card-body text-center">
                                 <img src="images/integrity.png" class="img-fluid" style="width: 25%;">
                                 <h1 class="fw-bolder title-1 pb-3 text-green mt-3">Integrity</h1>
-                                <p class="card-text text-secondary subtitle-1">Our Integrity is keeping our word and treating others with failness and respect. Integrity is one of our most cherished assets</p>
+                                <p class="card-text text-secondary subtitle-1" style="text-align:justify;">Always keep promises and treat others with kindness and respect. Integrity is one of our most valuable assets.</p>
                             </div>
                         </div>
                     </div>
