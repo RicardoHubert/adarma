@@ -181,23 +181,17 @@ class DashboardController extends Controller
     
         // Delete the existing image files (if they exist)
         if ($landingpage) {
-            if (file_exists(public_path('storage/' . $landingpage->img_logo))) {
-                if (is_dir(public_path('storage/' . $landingpage->img_logo))) {
-                    // It's a directory, so delete it using rmdir
-                    rmdir(public_path('storage/' . $landingpage->img_logo));
-                } else {
-                    // It's a file, so delete it using unlink
-                    unlink(public_path('storage/' . $landingpage->img_logo));
+            if ($landingpage->img_logo) {
+                $imgLogoPath = public_path('storage/' . $landingpage->img_logo);
+                if (file_exists($imgLogoPath)) {
+                    unlink($imgLogoPath);
                 }
             }
     
-            if (file_exists(public_path('storage/' . $landingpage->img_landing))) {
-                if (is_dir(public_path('storage/' . $landingpage->img_landing))) {
-                    // It's a directory, so delete it using rmdir
-                    rmdir(public_path('storage/' . $landingpage->img_landing));
-                } else {
-                    // It's a file, so delete it using unlink
-                    unlink(public_path('storage/' . $landingpage->img_landing));
+            if ($landingpage->img_landing) {
+                $imgLandingPath = public_path('storage/' . $landingpage->img_landing);
+                if (file_exists($imgLandingPath)) {
+                    unlink($imgLandingPath);
                 }
             }
         }
@@ -220,7 +214,6 @@ class DashboardController extends Controller
     
         return redirect()->back()->with('success', 'Landing Page berhasil diperbarui!');
     }
-    
 
     public function landingpage_destroy()
     {
