@@ -5,8 +5,10 @@
     {{-- carousell --}}
     <div>
         <div>
-            <nav class="navbar navbar-expand-lg navbar-light bg-green" style="z-index: 10;">
+            <nav class="navbar navbar-expand-lg navbar-light" style="z-index: 10;position: absolute;left: 0;width: 100%;transition: background-color 200ms ease-in;background-image: -o-linear-gradient(left,rgba(0,0,0,0.7) 0%,rgb(0,216,102) 100%);background: linear-gradient(to bottom,rgba(0,216,102,0.7) 0%,rgba(0,0,0,0) 300%);">
+            <!-- <nav class="navbar navbar-expand-lg navbar-light bg-green" style="z-index: 10;"> -->
                 @include('layouts.frontend.navbar')
+
             </nav>
         </div>
 
