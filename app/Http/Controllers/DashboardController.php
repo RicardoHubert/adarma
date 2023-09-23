@@ -21,6 +21,17 @@ class DashboardController extends Controller
         $this->middleware('auth');
     }
 
+    // public function emailputfrontend()
+    // {
+    //     $validated = request()->validate([
+    //         'email' => 'required|string',
+    //     ]);
+
+    //     // Email::create($validated);
+
+    //     return redirect()->route('/')->with('success', 'Terima Kasih, Tim marketing akan segera melakukan followup !!');
+    // }
+
     public function index()
     {
         $title = 'Dashboard';
@@ -84,35 +95,34 @@ class DashboardController extends Controller
         if ($profile->image != null) {
             unlink(public_path('storage/' . $profile->image));
         }
-        
+
         $profile->image = null;
         $profile->save();
 
         return redirect()->back()->with('success', 'Profile berhasil dihapus!');
     }
-    
+
     public function password(Request $request)
     {
         $user = User::find(Auth::user()->id);
-                
+
         $request->validate([
             'current_password' => 'required',
             'password' => 'required|string|min:6|confirmed',
         ]);
-        
-        if( !(Hash::check($request->current_password, $user->password)) ) {
+
+        if (!(Hash::check($request->current_password, $user->password))) {
             return redirect()->back()->with('error', 'Password lama kamu tidak sesuai!');
         } else {
-            if(strcmp($request->get('current_password'), $request->get('password')) == 0){
+            if (strcmp($request->get('current_password'), $request->get('password')) == 0) {
                 return redirect()->back()->with('error', 'Password lama kamu tidak boleh sama dengan password baru!');
             } else {
                 $user->password = bcrypt($request->get('password'));
                 $user->save();
-                
+
                 return redirect()->back()->with('success', 'Password kamu berhasil diubah');
             }
-        }        
-
+        }
     }
 
     public function users()
@@ -161,48 +171,56 @@ class DashboardController extends Controller
     public function landingpage_store(Request $request)
     {
         $landingpage = LandingPage::latest()->first();
-        
+    
         $validated = request()->validate([
             'img_logo' => 'nullable|file|image|mimes:jpeg,jpg,png,gif|max:1024',
             'img_landing' => 'nullable|file|image|mimes:jpeg,jpg,png,gif|max:1024',
             'text_landing_large' => 'nullable|string',
             'text_landing_small' => 'nullable|string',
         ]);
-
-        if ($landingpage == null) {
-            if ($request->file('img_logo')) {
-                $validated['img_logo'] = $request->file('img_logo')->store('landingpage');
-            }
-            if ($request->file('img_landing')) {
-                $validated['img_landing'] = $request->file('img_landing')->store('landingpage');
-            }
-            
-            LandingPage::create($validated);
-        } else {
-            if ($request->file('img_logo')) {
-                $validated['img_logo'] = $request->file('img_logo')->store('landingpage');
-                // if ($landingpage->img_logo != null) {
-                //     unlink(public_path('storage/' . $landingpage->img_logo));
-                // }
-                if (file_exists(public_path('storage/' . $landingpage->image))) {
-                    unlink(public_path('storage/' . $landingpage->image));
+    
+        // Delete the existing image files (if they exist)
+        if ($landingpage) {
+            if (file_exists(public_path('storage/' . $landingpage->img_logo))) {
+                if (is_dir(public_path('storage/' . $landingpage->img_logo))) {
+                    // It's a directory, so delete it using rmdir
+                    rmdir(public_path('storage/' . $landingpage->img_logo));
+                } else {
+                    // It's a file, so delete it using unlink
+                    unlink(public_path('storage/' . $landingpage->img_logo));
                 }
             }
-            if ($request->file('img_landing')) {
-                $validated['img_landing'] = $request->file('img_landing')->store('landingpage');
-                // if ($landingpage->img_landing != null) {
-                //     unlink(public_path('storage/' . $landingpage->img_landing));
-                // }
-                if (file_exists(public_path('storage/' . $landingpage->img_landing))) {
+    
+            if (file_exists(public_path('storage/' . $landingpage->img_landing))) {
+                if (is_dir(public_path('storage/' . $landingpage->img_landing))) {
+                    // It's a directory, so delete it using rmdir
+                    rmdir(public_path('storage/' . $landingpage->img_landing));
+                } else {
+                    // It's a file, so delete it using unlink
                     unlink(public_path('storage/' . $landingpage->img_landing));
                 }
             }
-            
-            LandingPage::where('id', $landingpage->id)->update($validated);
         }
-        
+    
+        // Store the new image files
+        if ($request->file('img_logo')) {
+            $validated['img_logo'] = $request->file('img_logo')->store('landingpage');
+        }
+    
+        if ($request->file('img_landing')) {
+            $validated['img_landing'] = $request->file('img_landing')->store('landingpage');
+        }
+    
+        // Create or update the LandingPage record with the new data
+        if ($landingpage) {
+            LandingPage::where('id', $landingpage->id)->update($validated);
+        } else {
+            LandingPage::create($validated);
+        }
+    
         return redirect()->back()->with('success', 'Landing Page berhasil diperbarui!');
     }
+    
 
     public function landingpage_destroy()
     {
@@ -213,7 +231,7 @@ class DashboardController extends Controller
         if ($landingpage->img_landing != null) {
             unlink(public_path('storage/' . $landingpage->img_landing));
         }
-        
+
         $landingpage->delete();
 
         return redirect()->back()->with('success', 'Landing Page berhasil disetel ulang!');
@@ -229,7 +247,7 @@ class DashboardController extends Controller
             'img_third' => 'nullable|file|image|mimes:jpeg,jpg,png,gif|max:1024',
         ]);
 
-        if ($carousel == null) {           
+        if ($carousel == null) {
             if ($request->file('img_first')) {
                 $validated['img_first'] = $request->file('img_first')->store('carousel');
             }
@@ -253,7 +271,7 @@ class DashboardController extends Controller
                     unlink(public_path('storage/' . $carousel->img_second));
                 }
             }
-            if ($request->file('img_third')) { 
+            if ($request->file('img_third')) {
                 $validated['img_third'] = $request->file('img_third')->store('carousel');
                 if ($carousel->img_third != null) {
                     unlink(public_path('storage/' . $carousel->img_third));
@@ -278,7 +296,7 @@ class DashboardController extends Controller
         if ($carousel->img_third != null) {
             unlink(public_path('storage/' . $carousel->img_third));
         }
-        
+
         $carousel->delete();
 
         return redirect()->back()->with('success', 'Carousel berhasil disetel ulang!');
@@ -292,5 +310,4 @@ class DashboardController extends Controller
 
         return view('dashboard.article.editor.index', compact('title', 'landingpage', 'editors'));
     }
-
 }
