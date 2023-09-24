@@ -63,7 +63,7 @@
                             <li class="nav-item mb-1 @if ($title == 'Category Article') active @endif"> <a class="nav-link @if ($title == 'Category Article') active @endif" href="{{ route('category_article.index') }}">Category</a></li>
                             <li class="nav-item mb-1 @if ($title == 'Writer') active @endif"> <a class="nav-link @if ($title == 'Writer') active @endif" href="{{ route('writer.index') }}">Writer</a></li>
                             <li class="nav-item mb-1 @if ($title == 'Editor') active @endif"> <a class="nav-link @if ($title == 'Editor') active @endif" href="{{ route('editor') }}">Editor</a></li>
-                            <li class="nav-item mb-1 @if ($title == 'Subscribers_news') active @endif"> <a class="nav-link @if ($title == 'Subscribers_news') active @endif" href="{{ route('subscribers_news.index') }}">Subscriber Newsletters</a></li>
+                            <li class="nav-item mb-1 @if ($title == 'Subscribers') active @endif"> <a class="nav-link @if ($title == 'Subscribers') active @endif" href="{{ route('subscribers_news.index') }}">Subscribers News</a></li>
 
                         @endif
                     </ul>
