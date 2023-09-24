@@ -93,8 +93,12 @@
                                 <div class="col-md-6">
                                     <div class="form-group row">
                                         <label for="price" class="col-md-4 col-form-label">Price</label>
-                                        <div class="col-sm-8">
+                                        <!-- <div class="col-sm-8">
                                             <input id="price" name="price" type="text" type-currency="IDR" placeholder="Rp" class="form-control input-currency @error('price') is-invalid @enderror" value="{{ old('price') }}"/>
+                                        </div> -->
+
+                                        <div class="col-sm-8">
+                                            <input id="price" name="price" type="text" type-currency="USD" placeholder="US$" class="form-control input-currency @error('price') is-invalid @enderror" value="{{ old('price') }}"/>
 
                                             @error('price')
                                                 <span class="text-danger">{{ $message }}</span>
@@ -179,5 +183,7 @@
     </div>
   </div>
   <!-- content-wrapper ends -->
+  <script src="{{ asset('js/price-format.js') }}"></script>
+
 
 @endsection

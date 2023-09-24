@@ -87,18 +87,18 @@
                         </div>
 
                         <div class="row">
-                            <div class="col-md-6">
-                                <div class="form-group row">
-                                    <label for="price" class="col-md-4 col-form-label">Price</label>
-                                    <div class="col-sm-8">
-                                        <input id="price" name="price" type="text" class="form-control @error('price') is-invalid @enderror" value="{{ $product->price }}"/>
+                                <div class="col-md-6">
+                                    <div class="form-group row">
+                                        <label for="price" class="col-md-4 col-form-label">Price</label>
+                                        <div class="col-sm-8">
+                                            <input id="price" name="price" type="text" class="form-control @error('price') is-invalid @enderror" value="{{ $product->price }}" placeholder="US$"/>
 
-                                        @error('price')
-                                            <span class="text-danger">{{ $message }}</span>
-                                        @enderror
+                                            @error('price')
+                                                <span class="text-danger">{{ $message }}</span>
+                                            @enderror
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
                             <div class="col-md-6">
                                 <div class="form-group row">
                                     <label for="unit" class="col-md-3 col-form-label">Unit</label>
@@ -133,7 +133,7 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="form-group row">
-                                    <label for="price" class="col-md-2 col-form-label">Status</label>
+                                    <label for="status" class="col-md-2 col-form-label">Status</label>
 
                                     <div class="col-md-9">
                                         <div class="d-flex">
@@ -175,5 +175,5 @@
     </div>
   </div>
   <!-- content-wrapper ends -->
-
+  <script src="{{ asset('js/price-format.js') }}"></script>
 @endsection
