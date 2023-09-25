@@ -1,20 +1,23 @@
-<nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
+<nav class="navbar col-lg-12 col-12 p-0 fixed-top">
     <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
-        <a class="brand-logo nav-link" href="{{ url('/') }}">
+        <!-- Display the logo and background color on larger screens -->
+        <a class="brand-logo nav-link d-none d-lg-block" href="{{ url('/') }}">
             <div class="d-flex align-items-center justify-content-center">
                 <img src="@if (isset($landingpage->img_logo))
-                                        {{ asset('storage/' . $landingpage->img_logo) }}
-                                    @else
-                                        {{ asset('images/logo.png') }}
-                                    @endif" width="40" height="40" alt="logo"/>
-                {{-- <span class="text-light ml-2 text-uppercase text-monospace">CV. Arta Mandiri</span> --}}
+                    {{ asset('storage/' . $landingpage->img_logo) }}
+                @else
+                    {{ asset('images/logo.png') }}
+                @endif" width="100" height="40" alt="logo"/>
             </div>
         </a>
-        <a class="navbar-brand brand-logo-mini" href="{{ url('/') }}"><img src="@if (isset($landingpage->img_logo))
-                                        {{ asset('storage/' . $landingpage->img_logo) }}
-                                    @else
-                                        {{ asset('images/logo.png') }}
-                                    @endif" alt="logo"/></a>
+        <!-- Logo for mobile view with a specific width of 100px -->
+        <a class="navbar-brand brand-logo-mini d-lg-none" href="{{ url('/') }}">
+            <img src="@if (isset($landingpage->img_logo))
+                {{ asset('storage/' . $landingpage->img_logo) }}
+            @else
+                {{ asset('images/logo.png') }}
+            @endif" alt="logo" width="100" />
+        </a>
     </div>
     <div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
         <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
@@ -22,14 +25,14 @@
         </button>
         <ul class="navbar-nav mr-lg-2">
             <li class="nav-item nav-search d-none d-lg-block">
-            <div class="input-group">
-                <div class="input-group-prepend">
-                <span class="input-group-text" id="search">
-                    <i class="icon-search"></i>
-                </span>
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="search">
+                            <i class="icon-search"></i>
+                        </span>
+                    </div>
+                    <input type="text" class="form-control" placeholder="Search Projects.." aria-label="search" aria-describedby="search">
                 </div>
-                <input type="text" class="form-control" placeholder="Search Projects.." aria-label="search" aria-describedby="search">
-            </div>
             </li>
         </ul>
         <ul class="navbar-nav navbar-nav-right">
@@ -39,16 +42,6 @@
                 </a>
                 <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list" aria-labelledby="messageDropdown">
                     <p class="mb-0 font-weight-normal float-left dropdown-header">No Messages</p>
-                    {{-- <p class="mb-0 font-weight-normal float-left dropdown-header">Messages</p>
-                    <a class="dropdown-item preview-item">
-                        <div class="preview-thumbnail">
-                            <img src="{{ asset('images/faces/face4.jpg') }}" alt="image" class="profile-pic">
-                        </div>
-                        <div class="preview-item-content flex-grow">
-                            <h6 class="preview-subject ellipsis font-weight-normal weight-light small-text text-muted mb-0">David Grey</h6>
-                            <p class="font-weight-light small-text text-muted mb-0">The meeting is cancelled</p>
-                        </div>
-                    </a> --}}
                 </div>
             </li>
             <li class="nav-item dropdown d-flex mr-4 ">

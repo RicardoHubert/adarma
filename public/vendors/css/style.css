@@ -24354,7 +24354,7 @@ dl li {
 }
 
 .navbar .navbar-brand-wrapper {
-  background: #146A27;
+  background: #00D866;
   transition: width 0.25s ease, background 0.25s ease;
   -webkit-transition: width 0.25s ease, background 0.25s ease;
   -moz-transition: width 0.25s ease, background 0.25s ease;
@@ -24394,7 +24394,7 @@ dl li {
 }
 
 .navbar .navbar-brand-wrapper .brand-logo-mini img {
-  width: calc(70px - 30px);
+  width: 80px;
   max-width: 100%;
   margin: auto;
 }
@@ -24417,7 +24417,7 @@ dl li {
 
 @media (max-width: 991px) {
   .navbar .navbar-menu-wrapper {
-    width: calc(100% - 55px);
+    width: calc(100% - 100px);
     padding-left: 15px;
     padding-right: 15px;
   }
@@ -25014,7 +25014,7 @@ dl li {
 
 @media (max-width: 480px) {
   .navbar .navbar-brand-wrapper {
-    width: 55px;
+    width: 100px;
   }
 
   .navbar .navbar-brand-wrapper .brand-logo-mini {
@@ -25211,24 +25211,31 @@ dl li {
 .hover-show:hover {
   color: blue;
 }
+
 .hover-edit:hover {
   color: darkgreen;
 }
+
 .hover-delete:hover {
   color: red;
 }
+
 .position-relative {
   position: relative;
 }
+
 .position-absolute {
   position: absolute;
 }
+
 .top-6 {
-    top: 6em;
-    margin: 0 2em;
+  top: 6em;
+  margin: 0 2em;
 }
-body, nav {
-    font-family: Quicksand, sans-serif !important;
+
+body,
+nav {
+  font-family: Quicksand, sans-serif !important;
 }
 
 @media screen and (max-width: 600px) {
@@ -25236,6 +25243,7 @@ body, nav {
     font-size: 25px;
     font-weight: 500;
   }
+
   .text-xs {
     font-size: 10px;
   }
