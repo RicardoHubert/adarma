@@ -42,12 +42,12 @@
                                     @if (isset($landingpage->img_logo))
                                         {{ asset('storage/' . $landingpage->img_logo) }}
                                     @else
-                                        {{ asset('images/logo.png') }}
+                                        {{ asset('images/logo-4nobg.png') }}
                                     @endif
-                                    " width="50" height="50" alt="logo">
+                                    " width="105" height="50" alt="logo">
                                 </a>
                                 <div class="ml-3">
-                                    <h5 class="font-weight-bold text-black">CV. Arta Mandiri</h5>
+                                    <h5 class="font-weight-bold text-black">PT Adarma Mandiri Nusantara</h5>
                                     <p class="text-sm text-black">Agricultural And Industrial Export Company</p>
                                 </div>
                             </div>
