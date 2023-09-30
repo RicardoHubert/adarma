@@ -8,6 +8,15 @@
     </nav>
 </section>
 
+<style>
+        .product-description {
+            font-size: 21pt;
+            font-family: cambria;
+            text-align: center;
+            font-weight: bold;
+        }
+    </style>
+
 <section class="my-5">
     <div class="container">
         <div class="row">
@@ -52,17 +61,18 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-3">
-                        <p>Description</p>
+                    <div class="col-12 d-flex justify-content-center">
+                    <p class="product-description">Product Description</p>
                     </div>
-                    <div class="col-9 d-flex">
-                        <span>:&nbsp;</span> {!! $product->description !!}
+                    <div class="col-12 d-flex">
+                        <span>&nbsp;</span> {!! $product->description !!}
                     </div>
                 </div>
                 <div class="row">
                     <div>
                         @if ($product->status == 'Available')
-                            <button class="btn btn-dark mt-3" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Request Product</button>                        
+                            <button class="btn btn-dark mt-3" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Request Product</button>  
+                            <a href="{{ $product->pdfDownloadLink }}" class="btn btn-primary mt-3">Download Catalog</a>
                         @endif
                         <!-- Modal -->
                         <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
