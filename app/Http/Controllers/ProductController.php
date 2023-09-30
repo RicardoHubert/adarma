@@ -60,23 +60,28 @@ class ProductController extends Controller
             'description' => 'required|string',
             'image' => 'required|file|image|mimes:jpeg,jpg,png,gif|max:1024',
             'product_pdf' => 'nullable|file|mimes:pdf|max:8192',
-
         ]);
-
+    
         if ($request->hasFile('product_pdf')) {
             $pdfFile = $request->file('product_pdf');
+            $originalPdfName = $pdfFile->getClientOriginalName(); // Get the original name
+    
+            // Save the original name to the database
+            $validated['original_pdf_name'] = $originalPdfName;
+    
             $pdfFileName = $pdfFile->store('product_pdfs'); // Adjust the storage folder as needed
             $validated['product_pdf'] = $pdfFileName;
         }
-
+    
         $validated['image'] = $request->file('image')->store('product');
         $validated['slug'] = str_replace(' ', '-', strtolower($validated['slug']));
         $validated['slug'] = preg_replace("/[^a-zA-Z0-9-]/", "", $validated['slug']);
-
+    
         Product::create($validated);
-
+    
         return redirect()->route('product.index')->with('success', 'Produk berhasil dibuat!');
-}
+    }
+    
 
     /**
      * Display the specified resource.
