@@ -15,6 +15,7 @@ class CreateBuyersTable extends Migration
     {
         Schema::create('buyers', function (Blueprint $table) {
             $table->id();
+            $table->integer('category_id');
             $table->string('nama');
             $table->string('no_buyer');
             $table->string('email');
