@@ -27,6 +27,9 @@
                                     <th class="font-weight-bold text-black">
                                         Nama Buyer
                                     </th>
+									<th class="font-weight-bold text-black">
+                                        Kategory Product
+                                    </th>
                                     <th class="font-weight-bold text-black">
                                         Kontak Buyer
                                     </th>
@@ -52,6 +55,9 @@
                                     <tr>
                                         <td>
                                             {{ $row->nama }}
+                                        </td>
+										<td>
+                                            {{ $row->category->name }}
                                         </td>
                                         <td>
                                             {{ $row->no_buyer }}

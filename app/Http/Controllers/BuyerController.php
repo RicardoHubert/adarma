@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Model\LandingPage;
+use App\Model\CategoryProduct;
 use App\Model\Buyer;
 
 
@@ -34,7 +35,9 @@ class BuyerController extends Controller
     {
         //
         $title = 'Add Buyer';
-        return view('dashboard.buyer.create', compact('title'));
+        $category = CategoryProduct::get();
+        $landingpage = LandingPage::latest()->first();
+        return view('dashboard.buyer.create', compact('landingpage','category','title'));
     }
 
     /**
@@ -47,6 +50,7 @@ class BuyerController extends Controller
     {
         //
         $validated = request()->validate([
+            'category_id' => 'required|integer',
             'nama' => 'required|string',
             'no_buyer' => 'required|string',
             'email' => 'required|string|email',
@@ -82,9 +86,10 @@ class BuyerController extends Controller
         //
         $title = 'Edit Buyer';
         $landingpage = LandingPage::latest()->first();
+        $category = CategoryProduct::get();
         $buyer = Buyer::find($id);
         
-        return view('dashboard.buyer.edit', compact('title','landingpage', 'buyer'));
+        return view('dashboard.buyer.edit', compact('title','category','landingpage', 'buyer'));
     }
 
     /**
@@ -100,6 +105,7 @@ class BuyerController extends Controller
         $writer = Buyer::find($id);
 
         $validated = request()->validate([
+            'category_id' => 'required|integer',
             'nama' => 'required|string',
             'no_buyer' => 'required|string',
             'email' => 'required|string|email',
