@@ -162,6 +162,7 @@ Route::group(['prefix' => 'dashboard', 'middleware' => ['auth', 'role:super_admi
     Route::get('/buyer/create', [BuyerController::class, 'create'])->name('buyer.create');
     Route::post('/buyer/store', [BuyerController::class, 'store'])->name('buyer.store');
     Route::get('/buyer/{id}/edit', [BuyerController::class, 'edit'])->name('buyer.edit');
+    Route::put('/buyer/{id}/update', [BuyerController::class, 'update'])->name('buyer.update');
 
     Route::delete('/buyer/{id}/destroy', [BuyerController::class, 'destroy'])->name('buyer.destroy');
 

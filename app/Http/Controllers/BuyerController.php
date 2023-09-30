@@ -78,6 +78,11 @@ class BuyerController extends Controller
     public function edit($id)
     {
         //
+        $title = 'Edit Buyer';
+        
+        $buyer = Buyer::find($id);
+        
+        return view('dashboard.buyer.edit', compact('title', 'buyer'));
     }
 
     /**
@@ -90,6 +95,23 @@ class BuyerController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $writer = Buyer::find($id);
+
+        $validated = request()->validate([
+            'nama' => 'required|string',
+            'no_buyer' => 'required|string',
+            'email' => 'required|string|email',
+            'nama_perusahaan'=> 'required|string',
+            'alamat_perusahaan'=> 'required|string'
+
+
+        ]);
+
+            
+        Buyer::find($id)->update($validated);
+        
+        return redirect()->route('buyer.index')->with('success', 'Data buyer berhasil diperbarui!');
+
     }
 
     /**
@@ -101,5 +123,10 @@ class BuyerController extends Controller
     public function destroy($id)
     {
         //
+        $buyer = Buyer::find($id);
+    
+        $buyer->delete();
+    
+        return redirect()->route('buyer.index')->with('success', 'Data buyer berhasil dihapus!');
     }
 }
