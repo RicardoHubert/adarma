@@ -88,6 +88,19 @@
                     </ul>
                 </div>
             </li>
+
+            <li class="nav-item mb-1">
+                <a class="nav-link" data-toggle="collapse" href="#buyer" aria-expanded="false" aria-controls="buyer">
+                    <i class="icon-bag menu-icon"></i>
+                        <span class="menu-title">Buyer</span>
+                    <i class="menu-arrow"></i>
+                </a>            
+                <div class="collapse" id="buyer">
+                    <ul class="nav flex-column sub-menu">
+                        <li class="nav-item mb-1 @if ($title == 'Buyer') active @endif"> <a class="nav-link @if ($title == 'Buyer') active @endif" href="{{ route('buyer.index') }}">Data Buyer</a></li>
+                    </ul>
+                </div>
+            </li>
         @endif
     </ul>
 </nav>

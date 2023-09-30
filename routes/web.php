@@ -7,6 +7,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\FrontEndController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProductRequestController;
+use App\Http\Controllers\BuyerController;
 use App\Http\Controllers\WriterController;
 use App\Http\Controllers\GuestController;
 use Illuminate\Support\Facades\Artisan;
@@ -155,6 +156,16 @@ Route::group(['prefix' => 'dashboard', 'middleware' => ['auth', 'role:super_admi
     Route::get('product/{id}/request/show', [ProductRequestController::class, 'show'])->name('product.request.show');
     Route::post('product/{id}/request/update', [ProductRequestController::class, 'update'])->name('product.request.update');
     Route::delete('product/{id}/request/destroy', [ProductRequestController::class, 'destroy'])->name('product.request.destroy');
+
+    // Dashboard CRUD Buyer
+    Route::get('/buyer',[BuyerController::class,'index'])->name('buyer.index');
+    Route::get('/buyer/create', [BuyerController::class, 'create'])->name('buyer.create');
+    Route::post('/buyer/store', [BuyerController::class, 'store'])->name('buyer.store');
+    Route::get('/buyer/{id}/edit', [BuyerController::class, 'edit'])->name('buyer.edit');
+
+    Route::delete('/buyer/{id}/destroy', [BuyerController::class, 'destroy'])->name('buyer.destroy');
+
+
 });
 
 Auth::routes();
