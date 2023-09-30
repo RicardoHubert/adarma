@@ -25,9 +25,6 @@
                             <thead>
                                 <tr>
                                     <th class="font-weight-bold text-black">
-                                        Published
-                                    </th>
-                                    <th class="font-weight-bold text-black">
                                         Nama Buyer
                                     </th>
                                     <th class="font-weight-bold text-black">
@@ -42,6 +39,9 @@
 									<th class="font-weight-bold text-black">
                                         Alamat Perusahaan
                                     </th>
+									<th class="font-weight-bold text-black">
+                                        Published
+                                    </th>
                                     <th class="font-weight-bold text-black">
                                         Action
                                     </th>
@@ -50,9 +50,6 @@
                             <tbody>
                                 @foreach ($buyer as $row)
                                     <tr>
-                                        <td>
-                                            {{ $row->created_at }}
-                                        </td>
                                         <td>
                                             {{ $row->nama }}
                                         </td>
@@ -68,7 +65,9 @@
                                         <td>
                                             {{ $row->alamat_perusahaan }}
                                         </td>
-
+                                        <td>
+                                            {{ $row->created_at }}
+                                        </td>
                                         <td>
                                             <div class="d-flex align-items-center">
                                                 <a href="{{ route('buyer.edit', $row->id) }}" class="mr-2">
