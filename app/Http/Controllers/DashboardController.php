@@ -295,10 +295,11 @@ class DashboardController extends Controller
     public function getsubs()
     {
     $title = 'Subscribers';
+    $landingpage = LandingPage::latest()->first();
     $subscribers_news = subscribers_news::get();
     // Pastikan $subscribers_news adalah dalam bentuk array atau objek yang dapat dihitung.
     // Jika $subscribers_news adalah objek tunggal, Anda perlu membuatnya menjadi array.
-    return view('dashboard.subscribers_news.index', compact('title', 'subscribers_news'));
+    return view('dashboard.subscribers_news.index', compact('title', 'landingpage','subscribers_news'));
     }
 public function subscribers_news_destroy($id){
         $subscribers_news = subscribers_news::find($id);

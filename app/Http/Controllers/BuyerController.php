@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Model\LandingPage;
 use App\Model\Buyer;
 
 
@@ -18,8 +19,9 @@ class BuyerController extends Controller
         //
         $title = 'Buyer';
         $buyer = Buyer::get();
+        $landingpage = LandingPage::latest()->first();
 
-        return view('dashboard.buyer.index', compact('buyer','title'));
+        return view('dashboard.buyer.index', compact('buyer','landingpage','title'));
 
     }
 
@@ -79,10 +81,10 @@ class BuyerController extends Controller
     {
         //
         $title = 'Edit Buyer';
-        
+        $landingpage = LandingPage::latest()->first();
         $buyer = Buyer::find($id);
         
-        return view('dashboard.buyer.edit', compact('title', 'buyer'));
+        return view('dashboard.buyer.edit', compact('title','landingpage', 'buyer'));
     }
 
     /**
