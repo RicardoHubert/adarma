@@ -18,7 +18,7 @@
                             </div>
                         </div>
                         <p class="card-description">
-                            {{ count($buyer) }} Products
+                            {{ count($buyer) }} Buyer
                         </p>
                         <div class="table-responsive">
                             <table id="myTable" class="table table-striped">
