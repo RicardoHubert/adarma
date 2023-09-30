@@ -39,10 +39,12 @@ Route::get('/', [FrontEndController::class, 'home'])->name('home');
 // });
 
 Route::get('/product', [FrontEndController::class, 'product'])->name('product');
-Route::get('/product', [FrontEndController::class, 'product'])->name('product');
 Route::get('/product/{product:slug}', [FrontEndController::class, 'product_show'])->name('product.show');
 Route::get('/product/category/{name}', [FrontEndController::class, 'product_filter'])->name('product.filter');
 Route::post('/product/request', [FrontEndController::class, 'product_request'])->name('product.request');
+Route::get('/storage/{product_pdfs}', [FrontEndController::class, 'download_productPdf'])->name('download_product.pdf');
+// Route::get('/product/{id}/edit', [ProductController::class, 'edit'])->name('product.edit');
+
 
 Route::get('/article', [FrontEndController::class, 'article'])->name('article');
 Route::get('/article/{article:slug}', [FrontEndController::class, 'article_show'])->name('article.show');

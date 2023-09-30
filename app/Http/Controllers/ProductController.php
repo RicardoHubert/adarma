@@ -7,6 +7,8 @@ use App\Model\LandingPage;
 use App\Model\Product;
 use App\Model\ProductRequest;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage; // Import the Storage facade
+
 
 class ProductController extends Controller
 {
@@ -57,7 +59,15 @@ class ProductController extends Controller
             'status' => 'required|string',
             'description' => 'required|string',
             'image' => 'required|file|image|mimes:jpeg,jpg,png,gif|max:1024',
+            'product_pdf' => 'nullable|file|mimes:pdf|max:8192',
+
         ]);
+
+        if ($request->hasFile('product_pdf')) {
+            $pdfFile = $request->file('product_pdf');
+            $pdfFileName = $pdfFile->store('product_pdfs'); // Adjust the storage folder as needed
+            $validated['product_pdf'] = $pdfFileName;
+        }
 
         $validated['image'] = $request->file('image')->store('product');
         $validated['slug'] = str_replace(' ', '-', strtolower($validated['slug']));
@@ -66,7 +76,7 @@ class ProductController extends Controller
         Product::create($validated);
 
         return redirect()->route('product.index')->with('success', 'Produk berhasil dibuat!');
-    }
+}
 
     /**
      * Display the specified resource.
@@ -122,6 +132,7 @@ class ProductController extends Controller
                 'status' => 'required|string',
                 'description' => 'required|string',
                 'image' => 'file|image|mimes:jpeg,jpg,png,gif|max:1024',
+                'product_pdf' => 'nullable|file|mimes:pdf|max:8192',
             ]);
         } else {
             $validated = request()->validate([
@@ -133,19 +144,32 @@ class ProductController extends Controller
                 'status' => 'required|string',
                 'description' => 'required|string',
                 'image' => 'file|image|mimes:jpeg,jpg,png,gif|max:1024',
+                'product_pdf' => 'nullable|file|mimes:pdf|max:8192',
             ]);
         }
 
         if ($request->file('image')) {
             // Store the new image
             $validated['image'] = $request->file('image')->store('product');
-        
+
             // Check if the old image file exists before attempting to delete it
-            if (file_exists(public_path('storage/' . $product->image))) {
-                unlink(public_path('storage/' . $product->image));
+            if (Storage::disk('public')->exists($product->image)) {
+                Storage::disk('public')->delete($product->image);
             }
         }
-        
+
+        // Update the product_pdf if a new file is provided
+        if ($request->hasFile('product_pdf')) {
+            $pdfFile = $request->file('product_pdf');
+            $pdfFileName = $pdfFile->store('product_pdfs');
+            $validated['product_pdf'] = $pdfFileName;
+
+            // Check if the old product_pdf file exists before attempting to delete it
+            if ($product->product_pdf && Storage::disk('public')->exists($product->product_pdf)) {
+                Storage::disk('public')->delete($product->product_pdf);
+            }
+        }
+
         $validated['slug'] = str_replace(' ', '-', strtolower($validated['slug']));
         $validated['slug'] = preg_replace("/[^a-zA-Z0-9-]/", "", $validated['slug']);
 
@@ -153,7 +177,6 @@ class ProductController extends Controller
 
         return redirect()->route('product.index')->with('success', 'Produk berhasil diperbarui!');
     }
-
     /**
      * Remove the specified resource from storage.
      *
@@ -163,9 +186,20 @@ class ProductController extends Controller
     public function destroy($id)
     {
         $product = Product::find($id);
-        unlink(public_path('storage/' . $product->image));
+    
+        // Delete the image file
+        if (file_exists(public_path('storage/' . $product->image))) {
+            unlink(public_path('storage/' . $product->image));
+        }
+    
+        // Delete the product_pdf file if it exists
+        if ($product->product_pdf && Storage::disk('public')->exists($product->product_pdf)) {
+            Storage::disk('public')->delete($product->product_pdf);
+        }
+    
         $product->delete();
-
+    
         return redirect()->route('product.index')->with('success', 'Produk berhasil dihapus!');
     }
+    
 }

@@ -25,7 +25,7 @@
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="form-group row">
-                                        <label for="image" class="col-md-2 col-form-label">File upload</label>
+                                        <label for="image" class="col-md-2 col-form-label">Upload image product</label>
                                         <div class="col-sm-10">
                                             <input id="image" name="image" type="file" class="form-control @error('image') is-invalid @enderror">
 
@@ -134,6 +134,20 @@
                                             @enderror
                                         </div>
                                     </div>
+                                </div>
+                            </div>
+                            
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group row">
+                                        <label for="image" class="col-md-2 col-form-label">Upload Catalogue (PDF)</label>
+                                        <div class="col-sm-10">
+                                            <input id="product_pdf" name="product_pdf" type="file" class="form-control @error('product_pdf') is-invalid @enderror">
+                                        </div>
+                                    </div>
+                                    @error('product_pdf')
+                                        <span class="text-danger">{{ $message }}</span>
+                                    @enderror
                                 </div>
                             </div>
 

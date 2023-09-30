@@ -10,7 +10,7 @@ class CreateProductRequestsTable extends Migration
      * Run the migrations.
      *
      * @return void
-     */
+    */
     public function up()
     {
         Schema::create('product_requests', function (Blueprint $table) {
@@ -22,6 +22,7 @@ class CreateProductRequestsTable extends Migration
             $table->string('address');
             $table->integer('request_product');
             $table->string('status')->default('pending');
+            $table->string('product_pdf')->nullable();
             $table->timestamps();
         });
     }

@@ -13,6 +13,12 @@ use App\Model\ProductRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
+// For Downloading PDF
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Http\Response;
+
+// End
+
 class FrontEndController extends Controller
 {
     public function home()
@@ -111,6 +117,16 @@ class FrontEndController extends Controller
 
         return view('frontend.product.show', compact('title', 'product', 'products', 'landingpage'));
     }
+    public function download_productPdf($product, $product_pdf)
+    {
+        $file = storage_path('app/public/' . $product_pdf); // Adjust the path as needed
+        if (file_exists($file)) {
+            return response()->file($file);
+        } else {
+            abort(404);
+        }
+    }
+    
     public function product_filter(Request $request, $name)
     {
         $title = 'Products';
