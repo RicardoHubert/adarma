@@ -69,8 +69,10 @@ class ProductController extends Controller
             // Save the original name to the database
             $validated['original_pdf_name'] = $originalPdfName;
     
-            $pdfFileName = $pdfFile->store('product_pdfs'); // Adjust the storage folder as needed
-            $validated['product_pdf'] = $pdfFileName;
+            // Set the PDF file name explicitly (use the original name)
+            $pdfFileName = $originalPdfName; // Set the file name to the original name
+            $pdfFile->storeAs('product_pdfs', $pdfFileName); // Store the file with the original name
+            $validated['product_pdf'] = 'product_pdfs/' . $pdfFileName; // Store the path in the database
         }
     
         $validated['image'] = $request->file('image')->store('product');
@@ -126,7 +128,7 @@ class ProductController extends Controller
     public function update(Request $request, $id)
     {
         $product = Product::find($id);
-
+    
         if ($request->slug !== $product->slug) {
             $validated = request()->validate([
                 'name' => 'required|string',
@@ -152,36 +154,40 @@ class ProductController extends Controller
                 'product_pdf' => 'nullable|file|mimes:pdf|max:8192',
             ]);
         }
-
+    
         if ($request->file('image')) {
             // Store the new image
             $validated['image'] = $request->file('image')->store('product');
-
+    
             // Check if the old image file exists before attempting to delete it
             if (Storage::disk('public')->exists($product->image)) {
                 Storage::disk('public')->delete($product->image);
             }
         }
-
+    
         // Update the product_pdf if a new file is provided
         if ($request->hasFile('product_pdf')) {
             $pdfFile = $request->file('product_pdf');
-            $pdfFileName = $pdfFile->store('product_pdfs');
+            $originalPdfName = $pdfFile->getClientOriginalName(); // Get the original name
+            $pdfFileName = $pdfFile->storeAs('product_pdfs', $originalPdfName, 'public'); // Store with original name
+        
             $validated['product_pdf'] = $pdfFileName;
-
+        
             // Check if the old product_pdf file exists before attempting to delete it
             if ($product->product_pdf && Storage::disk('public')->exists($product->product_pdf)) {
                 Storage::disk('public')->delete($product->product_pdf);
             }
         }
-
+    
         $validated['slug'] = str_replace(' ', '-', strtolower($validated['slug']));
         $validated['slug'] = preg_replace("/[^a-zA-Z0-9-]/", "", $validated['slug']);
-
+    
         Product::where('id', $product->id)->update($validated);
-
+    
         return redirect()->route('product.index')->with('success', 'Produk berhasil diperbarui!');
     }
+    
+    
     /**
      * Remove the specified resource from storage.
      *
