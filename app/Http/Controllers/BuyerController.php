@@ -59,9 +59,33 @@ class BuyerController extends Controller
             'alamat_perusahaan' => 'required|string',
             'kebutuhan' => 'string|nullable',
             'payment_terms' => 'string|nullable',
-            'note' => 'string|nullable'
+            'shipping_terms' => 'string|nullable',
+            'note' => 'string|nullable',
+            'status_buyer' => 'string|nullable'
 
         ]);
+            // Cek apakah negara_tujuan tidak memiliki value
+            if (empty($validated['negara_tujuan'])) {
+                $validated['status_buyer'] = 'data buyer mentah';
+            } else {
+                // Jika negara_tujuan memiliki value, periksa kebutuhan
+                if (empty($validated['kebutuhan'])) {
+                    $validated['status_buyer'] = 'data buyer mentah';
+                } else {
+                    // Jika kebutuhan memiliki value, periksa payment_terms
+                    if (empty($validated['payment_terms'])) {
+                        $validated['status_buyer'] = 'data buyer mentah';
+                    } else {
+                        // Jika validated_terms memiliki value, atur status menjadi "data buyer LOI"
+                        if (empty($validated['shipping_terms'])) {
+                            $validated['status_buyer'] = 'data buyer mentah';
+                        } else {
+                            $validated['status_buyer'] = 'data buyer LOI';
+                        }
+                    }
+                }
+            }
+            
 
         Buyer::create($validated);
 
@@ -118,13 +142,35 @@ class BuyerController extends Controller
             'alamat_perusahaan' => 'required|string',
             'kebutuhan' => 'string|nullable',
             'payment_terms' => 'string|nullable',
-            'note' => 'string|nullable'
+            'shipping_terms' => 'string|nullable',
+            'note' => 'string|nullable',
+            'status_buyer' => 'string|nullable'
+
 
         ]);
+        // Cek apakah negara_tujuan tidak memiliki value
+        if (empty($validated['negara_tujuan'])) {
+            $validated['status_buyer'] = 'data buyer mentah';
+        } else {
+            // Jika negara_tujuan memiliki value, periksa kebutuhan
+            if (empty($validated['kebutuhan'])) {
+                $validated['status_buyer'] = 'data buyer mentah';
+            } else {
+                // Jika kebutuhan memiliki value, periksa payment_terms
+                if (empty($validated['payment_terms'])) {
+                    $validated['status_buyer'] = 'data buyer mentah';
+                } else {
+                    // Jika validated_terms memiliki value, atur status menjadi "data buyer LOI"
+                    if (empty($validated['shipping_terms'])) {
+                        $validated['status_buyer'] = 'data buyer mentah';
+                    } else {
+                        $validated['status_buyer'] = 'data buyer LOI';
+                    }
+                }
+            }
+        }
 
-            
-        Buyer::find($id)->update($validated);
-        
+        Buyer::find($id)->update($validated);  
         return redirect()->route('buyer.index')->with('success', 'Data buyer berhasil diperbarui!');
 
     }

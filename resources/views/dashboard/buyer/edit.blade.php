@@ -122,7 +122,7 @@
                                 </div>
                             </div>
 
-                            <div class="col-md-6">
+                            <div class="col-md-3">
                                 <div class="form-group">
                                     <label for="payment_terms" class="col-sm-4 col-form-label">Payment Terms</label>
                                     <div class="col-sm-12">
@@ -133,7 +133,20 @@
                                     </div>
                                 </div>
                             </div>
+                            
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label for="shipping_terms" class="col-sm-4 col-form-label">Shipping Terms</label>
+                                    <div class="col-sm-12">
+                                        <input id="shipping_terms=" name="shipping_terms" type="text" class="form-control @error('shipping_terms') is-invalid @enderror" value="{{ $buyer->shipping_terms }}" />
+                                        @error('shipping_terms')
+                                            <span class="text-danger">{{ $message }}</span>
+                                        @enderror
+                                    </div>
+                                </div>
+                            </div>
 
+                            
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="note" class="col-sm-4 col-form-label">Note / Catatan</label>

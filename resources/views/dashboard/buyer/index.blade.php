@@ -52,7 +52,13 @@
                                         Payment terms
                                     </th>
                                     <th class="font-weight-bold text-black">
+                                        Shipping terms
+                                    </th>
+                                    <th class="font-weight-bold text-black">
                                         Note
+                                    </th>
+                                    <th class="font-weight-bold text-black">
+                                        Status
                                     </th>
 									<th class="font-weight-bold text-black">
                                         Published
@@ -93,7 +99,13 @@
                                             {{ $row->payment_terms }}
                                         </td>
                                         <td>
+                                            {{ $row->shipping_terms }}
+                                        </td>
+                                        <td>
                                             {{ $row->note }}
+                                        </td>
+                                        <td>
+                                            {{ $row->status_buyer}}
                                         </td>
                                         <td>
                                             {{ $row->created_at }}
