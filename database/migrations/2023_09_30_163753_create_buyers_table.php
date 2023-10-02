@@ -22,10 +22,12 @@ class CreateBuyersTable extends Migration
             $table->string('email');
             $table->string('nama_perusahaan');
             $table->string('alamat_perusahaan');
-            $table->string('kebutuhan');
-            $table->string('payment_terms');
-            $table->longText('note');
+            $table->string('kebutuhan')->nullable();
+            $table->string('payment_terms')->nullable();
+            $table->string('shipping_terms')->nullable();
+            $table->longText('note')->nullable();
             $table->string('product_interest')->nullable();
+            $table->string('status_buyer')->nullable();
             $table->timestamps();
         });
     }
