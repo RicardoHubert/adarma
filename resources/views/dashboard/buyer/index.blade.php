@@ -27,20 +27,32 @@
                                     <th class="font-weight-bold text-black">
                                         Nama Buyer
                                     </th>
+                                    <th class="font-weight-bold text-black">
+                                        Negara tujuan  
+                                    </th>
 									<th class="font-weight-bold text-black">
-                                        Kategory Product
+                                        Kategory product
                                     </th>
                                     <th class="font-weight-bold text-black">
-                                        Kontak Buyer
+                                        Kontak buyer
                                     </th>
                                     <th class="font-weight-bold text-black">
 										Email
 									</th>
                                     <th class="font-weight-bold text-black">
-                                        Nama Perusahaan
+                                        Nama perusahaan
                                     </th>
 									<th class="font-weight-bold text-black">
-                                        Alamat Perusahaan
+                                        Alamat perusahaan
+                                    </th>
+                                    <th class="font-weight-bold text-black">
+                                        kebutuhan
+                                    </th>
+                                    <th class="font-weight-bold text-black">
+                                        Payment terms
+                                    </th>
+                                    <th class="font-weight-bold text-black">
+                                        Note
                                     </th>
 									<th class="font-weight-bold text-black">
                                         Published
@@ -56,6 +68,9 @@
                                         <td>
                                             {{ $row->nama }}
                                         </td>
+                                        <td>
+                                            {{ $row->negara_tujuan }}
+                                        </td>
 										<td>
                                             {{ $row->category->name }}
                                         </td>
@@ -70,6 +85,15 @@
                                         </td>
                                         <td>
                                             {{ $row->alamat_perusahaan }}
+                                        </td>
+                                        <td>
+                                            {{ $row->kebutuhan }}
+                                        </td>
+                                        <td>
+                                            {{ $row->payment_terms }}
+                                        </td>
+                                        <td>
+                                            {{ $row->note }}
                                         </td>
                                         <td>
                                             {{ $row->created_at }}

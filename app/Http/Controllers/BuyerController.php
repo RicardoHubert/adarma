@@ -50,12 +50,16 @@ class BuyerController extends Controller
     {
         //
         $validated = request()->validate([
-            'category_id' => 'required|integer',
             'nama' => 'required|string',
+            'negara_tujuan' => 'string|nullable',
+            'category_id' => 'required|integer',
             'no_buyer' => 'required|string',
             'email' => 'required|string|email',
             'nama_perusahaan' => 'required|string',
             'alamat_perusahaan' => 'required|string',
+            'kebutuhan' => 'string|nullable',
+            'payment_terms' => 'string|nullable',
+            'note' => 'string|nullable'
 
         ]);
 
@@ -107,11 +111,14 @@ class BuyerController extends Controller
         $validated = request()->validate([
             'category_id' => 'required|integer',
             'nama' => 'required|string',
+            'negara_tujuan' => 'string|nullable',              
             'no_buyer' => 'required|string',
             'email' => 'required|string|email',
-            'nama_perusahaan'=> 'required|string',
-            'alamat_perusahaan'=> 'required|string'
-
+            'nama_perusahaan' => 'required|string',
+            'alamat_perusahaan' => 'required|string',
+            'kebutuhan' => 'string|nullable',
+            'payment_terms' => 'string|nullable',
+            'note' => 'string|nullable'
 
         ]);
 
