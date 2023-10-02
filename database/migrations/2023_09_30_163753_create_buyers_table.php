@@ -15,12 +15,16 @@ class CreateBuyersTable extends Migration
     {
         Schema::create('buyers', function (Blueprint $table) {
             $table->id();
-            $table->integer('category_id');
             $table->string('nama');
+            $table->string('negara_tujuan')->nullable();
+            $table->integer('category_id');
             $table->string('no_buyer');
             $table->string('email');
             $table->string('nama_perusahaan');
             $table->string('alamat_perusahaan');
+            $table->string('kebutuhan');
+            $table->string('payment_terms');
+            $table->longText('note');
             $table->string('product_interest')->nullable();
             $table->timestamps();
         });
