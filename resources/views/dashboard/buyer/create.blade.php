@@ -60,10 +60,34 @@
                                     </div>
                                 </div>
                             </div>
+                            
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="ext" class="col-sm-4 col-form-label">Extension</label>
+                                    <div class="col-sm-12">
+                                        <div class="input-group">
+                                            <div class="input-group-append">
+                                                <span class="input-group-text">Ext</span>
+                                            </div>
+                                        <select id="ext" name="ext" class="form-control @error('ext') is-invalid @enderror">
+                                            <option selected disabled>--- Choose Extension Country Code---</option>
+                                            @foreach ($countrycodes as $code)
+                                                <option value="{{ $code->country_ext }}">{{ $code['country_code'] }} - {{ $code['country_name'] }} ({{ $code['country_ext'] }})</option>
+                                            @endforeach
+                                        </select>
+                                        @error('ext')
+                                            <span class="text-danger">{{ $message }}</span>
+                                        @enderror
+                                        </div> 
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-2"></div>
 
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label for="no_buyer" class="col-sm-2 col-form-label">No.Handphone</label>
+                                    <label for="no_buyer" class="col-sm-4 col-form-label">No.Handphone</label>
                                     <div class="col-sm-12">
                                         <input id="no_buyer" name="no_buyer" type="text" class="form-control @error('no_buyer') is-invalid @enderror" value="{{ old('no_buyer') }}" />
                                         @error('no_buyer')
@@ -72,6 +96,7 @@
                                     </div>
                                 </div>
                             </div>
+
 
 							<div class="col-md-6">
                                 <div class="form-group">

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Model\LandingPage;
 use App\Model\CategoryProduct;
 use App\Model\Buyer;
+use App\Model\LibraryExt;
 
 
 class BuyerController extends Controller
@@ -37,7 +38,8 @@ class BuyerController extends Controller
         $title = 'Add Buyer';
         $category = CategoryProduct::get();
         $landingpage = LandingPage::latest()->first();
-        return view('dashboard.buyer.create', compact('landingpage','category','title'));
+        $countrycodes = LibraryExt::get();
+        return view('dashboard.buyer.create', compact('landingpage','category','title','countrycodes'));
     }
 
     /**
@@ -48,7 +50,6 @@ class BuyerController extends Controller
      */
     public function store(Request $request)
     {
-        //
         $validated = request()->validate([
             'nama' => 'required|string',
             'negara_tujuan' => 'string|nullable',
@@ -62,35 +63,51 @@ class BuyerController extends Controller
             'shipping_terms' => 'string|nullable',
             'note' => 'string|nullable',
             'status_buyer' => 'string|nullable'
-
         ]);
-            // Cek apakah negara_tujuan tidak memiliki value
-            if (empty($validated['negara_tujuan'])) {
+    
+        // Mengambil nilai dari input ekstensi
+        $extSelect = $request->input('ext');
+    
+        // Mengambil nilai dari input nomor handphone
+        $noHandphone = $validated['no_buyer'];
+    
+        // Membersihkan ekstensi dengan ekspresi regulernya
+        // $extCleaned = preg_replace('/[^0-9]/', '', $extSelect);
+        $extCleaned = preg_replace('/[^0-9+]/', '',  $extSelect);
+
+        // Membersihkan nomor handphone dengan ekspresi regulernya
+        $noHandphoneCleaned = preg_replace('/[^1-9]/', '', $noHandphone);
+    
+        // Menggabungkan ekstensi yang telah dibersihkan dengan nomor handphone yang telah dibersihkan
+        $combinedValue = $extCleaned . ' ' . $noHandphoneCleaned;
+    
+        // Menambahkan ekstensi dan nomor handphone yang telah digabungkan ke dalam data yang akan disimpan
+        $validated['no_buyer'] = $combinedValue;
+    
+        // Cek logika status buyer sesuai dengan yang Anda inginkan
+        if (empty($validated['negara_tujuan'])) {
+            $validated['status_buyer'] = 'data buyer mentah';
+        } else {
+            if (empty($validated['kebutuhan'])) {
                 $validated['status_buyer'] = 'data buyer mentah';
             } else {
-                // Jika negara_tujuan memiliki value, periksa kebutuhan
-                if (empty($validated['kebutuhan'])) {
+                if (empty($validated['payment_terms'])) {
                     $validated['status_buyer'] = 'data buyer mentah';
                 } else {
-                    // Jika kebutuhan memiliki value, periksa payment_terms
-                    if (empty($validated['payment_terms'])) {
+                    if (empty($validated['shipping_terms'])) {
                         $validated['status_buyer'] = 'data buyer mentah';
                     } else {
-                        // Jika validated_terms memiliki value, atur status menjadi "data buyer LOI"
-                        if (empty($validated['shipping_terms'])) {
-                            $validated['status_buyer'] = 'data buyer mentah';
-                        } else {
-                            $validated['status_buyer'] = 'data buyer LOI';
-                        }
+                        $validated['status_buyer'] = 'data buyer LOI';
                     }
                 }
             }
-            
-
+        }
+    
         Buyer::create($validated);
-
+    
         return redirect()->route('buyer.index')->with('success', 'Data buyer berhasil ditambahkan!');
     }
+    
 
     /**
      * Display the specified resource.
