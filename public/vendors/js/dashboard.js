@@ -1,6 +1,6 @@
-(function($) {
+(function ($) {
   'use strict';
-  $(function() {
+  $(function () {
     var dataBar = {
       labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug"],
       datasets: [{
@@ -36,7 +36,7 @@
           ticks: {
             beginAtZero: true,
             display: false,
-            
+
           },
           gridLines: {
             display: false,
@@ -65,7 +65,7 @@
       tooltips: {
         enabled: false
       }
-  
+
     };
     if ($("#customers").length) {
       var barChartCanvas = $("#customers").get(0).getContext("2d");
@@ -113,7 +113,7 @@
           ticks: {
             beginAtZero: true,
             display: false,
-            
+
           },
           gridLines: {
             display: false,
@@ -142,7 +142,7 @@
       tooltips: {
         enabled: false
       }
-  
+
     };
     if ($("#orders").length) {
       var barChartCanvas = $("#orders").get(0).getContext("2d");
@@ -160,54 +160,54 @@
       datasets: [
         {
           label: 'Sessions',
-          data: [24000,83123,24000,36000,20000,39000,72000,44000,18000],
+          data: [24000, 83123, 24000, 36000, 20000, 39000, 72000, 44000, 18000],
           backgroundColor: [
-            '#3794fc','#3794fc','#3794fc','#3794fc','#3794fc','#3794fc','#3794fc','#3794fc',
+            '#3794fc', '#3794fc', '#3794fc', '#3794fc', '#3794fc', '#3794fc', '#3794fc', '#3794fc',
           ],
           borderColor: [
-            '#3794fc','#3794fc','#3794fc','#3794fc','#3794fc','#3794fc','#3794fc','#3794fc',
+            '#3794fc', '#3794fc', '#3794fc', '#3794fc', '#3794fc', '#3794fc', '#3794fc', '#3794fc',
           ],
           borderWidth: 1,
           fill: false
         },
         {
-        label: 'New Users',
-        data: [35000,3333,58000,32000,15000,37000,41000,32000,22000],
-        backgroundColor: [
-          '#a037fc',
-          '#a037fc',
-          '#a037fc',
-          '#a037fc',
-          '#a037fc',
-          '#a037fc',
-          '#a037fc',
-          '#a037fc',
-        ],
-        borderColor: [
-          '#a037fc',
-          '#a037fc',
-          '#a037fc',
-          '#a037fc',
-          '#a037fc',
-          '#a037fc',
-          '#a037fc',
-          '#a037fc',
-        ],
-        borderWidth: 1,
-        fill: false
-      },
-      {
-        label: 'Page Views',
-        data: [24000,16869,47000,19000,25000,12000,32000,25000,22000],
-        backgroundColor: [
-          '#dee5ef','#dee5ef','#dee5ef','#dee5ef','#dee5ef','#dee5ef','#dee5ef','#dee5ef',
-        ],
-        borderColor: [
-          '#dee5ef','#dee5ef','#dee5ef','#dee5ef','#dee5ef','#dee5ef','#dee5ef','#dee5ef',
-        ],
-        borderWidth: 1,
-        fill: false
-      },]
+          label: 'New Users',
+          data: [35000, 3333, 58000, 32000, 15000, 37000, 41000, 32000, 22000],
+          backgroundColor: [
+            '#a037fc',
+            '#a037fc',
+            '#a037fc',
+            '#a037fc',
+            '#a037fc',
+            '#a037fc',
+            '#a037fc',
+            '#a037fc',
+          ],
+          borderColor: [
+            '#a037fc',
+            '#a037fc',
+            '#a037fc',
+            '#a037fc',
+            '#a037fc',
+            '#a037fc',
+            '#a037fc',
+            '#a037fc',
+          ],
+          borderWidth: 1,
+          fill: false
+        },
+        {
+          label: 'Page Views',
+          data: [24000, 16869, 47000, 19000, 25000, 12000, 32000, 25000, 22000],
+          backgroundColor: [
+            '#dee5ef', '#dee5ef', '#dee5ef', '#dee5ef', '#dee5ef', '#dee5ef', '#dee5ef', '#dee5ef',
+          ],
+          borderColor: [
+            '#dee5ef', '#dee5ef', '#dee5ef', '#dee5ef', '#dee5ef', '#dee5ef', '#dee5ef', '#dee5ef',
+          ],
+          borderWidth: 1,
+          fill: false
+        },]
     };
     var webAudienceMetricsSatackedOptions = {
       scales: {
@@ -216,14 +216,14 @@
           stacked: true,
           gridLines: {
             display: true, //this will remove only the label
-						drawBorder: false,
-						color: "#e5e9f2",
+            drawBorder: false,
+            color: "#e5e9f2",
           },
         }],
         yAxes: [{
           stacked: true,
-					display: false,
-					gridLines: {
+          display: false,
+          gridLines: {
             display: false, //this will remove only the label
             drawBorder: false
           },
@@ -233,8 +233,8 @@
         display: false,
         position: "bottom"
       },
-      legendCallback: function(chart) {	
-				var text = [];
+      legendCallback: function (chart) {
+        var text = [];
         text.push('<div class="row">');
         for (var i = 0; i < chart.data.datasets.length; i++) {
           text.push('<div class="col-lg-4"><div class="row"><div class="col-sm-12"><h5 class="font-weight-bold text-dark mb-1">' + chart.data.datasets[i].data[1].toLocaleString() + '</h5></div></div><div class="row align-items-center"><div class="col-2"><span class="legend-label" style="background-color:' + chart.data.datasets[i].backgroundColor[i] + '"></span></div><div class="col-9 pl-0"><p class="text-muted m-0 ml-1">' + chart.data.datasets[i].label + '</p></div></div>');
@@ -247,7 +247,7 @@
         point: {
           radius: 0
         }
-      } 
+      }
     };
     if ($("#web-audience-metrics-satacked").length) {
       var barChartCanvas = $("#web-audience-metrics-satacked").get(0).getContext("2d");
@@ -261,34 +261,34 @@
         options: webAudienceMetricsSatackedOptions
       });
       document.getElementById('chart-legends').innerHTML = barChart.generateLegend();
-		}
-		var marketTrendsSatackedData = {
+    }
+    var marketTrendsSatackedData = {
       labels: ["S", "M", "T", "W", "T", "F", "S"],
       datasets: [
         {
           label: 'Total Income',
-          data: [86000,83320,36000,80000,92000,58000,76000],
+          data: [86000, 83320, 36000, 80000, 92000, 58000, 76000],
           backgroundColor: [
-            '#51c81c','#51c81c','#51c81c','#51c81c','#51c81c','#51c81c','#51c81c','#51c81c',
+            '#51c81c', '#51c81c', '#51c81c', '#51c81c', '#51c81c', '#51c81c', '#51c81c', '#51c81c',
           ],
           borderColor: [
-            '#51c81c','#51c81c','#51c81c','#51c81c','#51c81c','#51c81c','#51c81c','#51c81c',
+            '#51c81c', '#51c81c', '#51c81c', '#51c81c', '#51c81c', '#51c81c', '#51c81c', '#51c81c',
           ],
           borderWidth: 1,
           fill: false
         },
-      	{
-        label: 'Total Expenses',
-        data: [59000,32370,84000,65000,53000,87000,60900],
-        backgroundColor: [
-          '#dee5ef','#dee5ef','#dee5ef','#dee5ef','#dee5ef','#dee5ef','#dee5ef','#dee5ef',
-        ],
-        borderColor: [
-          '#dee5ef','#dee5ef','#dee5ef','#dee5ef','#dee5ef','#dee5ef','#dee5ef','#dee5ef',
-        ],
-        borderWidth: 1,
-        fill: false
-      },]
+        {
+          label: 'Total Expenses',
+          data: [59000, 32370, 84000, 65000, 53000, 87000, 60900],
+          backgroundColor: [
+            '#dee5ef', '#dee5ef', '#dee5ef', '#dee5ef', '#dee5ef', '#dee5ef', '#dee5ef', '#dee5ef',
+          ],
+          borderColor: [
+            '#dee5ef', '#dee5ef', '#dee5ef', '#dee5ef', '#dee5ef', '#dee5ef', '#dee5ef', '#dee5ef',
+          ],
+          borderWidth: 1,
+          fill: false
+        },]
     };
     var marketTrendsSatackedOptions = {
       scales: {
@@ -297,14 +297,14 @@
           stacked: true,
           gridLines: {
             display: false, //this will remove only the label
-						drawBorder: false,
-						color: "#e5e9f2",
+            drawBorder: false,
+            color: "#e5e9f2",
           },
         }],
         yAxes: [{
           stacked: true,
-					display: false,
-					gridLines: {
+          display: false,
+          gridLines: {
             display: false, //this will remove only the label
             drawBorder: false
           },
@@ -314,8 +314,8 @@
         display: false,
         position: "bottom"
       },
-      legendCallback: function(chart) {	
-				var text = [];
+      legendCallback: function (chart) {
+        var text = [];
         text.push('<div class="row">');
         for (var i = 0; i < chart.data.datasets.length; i++) {
           text.push('<div class="col-6 "><div class="row"><div class="col-sm-12 ml-sm-0 mr-sm-0 pr-md-0"><h5 class="font-weight-bold text-dark">$ ' + chart.data.datasets[i].data[1].toLocaleString() + '</h5></div></div><div class="row align-items-center"><div class="col-12"><p class="text-muted m-0">' + chart.data.datasets[i].label + '</p></div></div>');
@@ -328,7 +328,7 @@
         point: {
           radius: 0
         }
-      } 
+      }
     };
     if ($("#marketTrendssatacked").length) {
       var barChartCanvas = $("#marketTrendssatacked").get(0).getContext("2d");
@@ -345,4 +345,38 @@
       showSelectedRating: false
     });
   });
-})(jQuery);
+
+  // Ini Untuk extension yang ada di halaman create ataupun edit buyer
+  document.addEventListener('DOMContentLoaded', function () {
+    const extSelect = document.getElementById('ext');
+    const noHandphoneInput = document.getElementById('no_buyer');
+
+    const form = document.querySelector('form');
+
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+
+      // Mengambil ekstensi yang dipilih oleh pengguna
+      const extValue = extSelect.value;
+
+      // Membersihkan ekstensi dengan ekspresi regulernya
+      const extCleaned = extValue.replace(/[^0-9]/g, '');
+
+      // Mengambil nilai nomor handphone dari input
+      const noHandphoneValue = noHandphoneInput.value;
+
+      // Membersihkan nomor handphone dengan ekspresi regulernya
+      const noHandphoneCleaned = noHandphoneValue.replace(/[^0-9]/g, '');
+
+      // Menggabungkan ekstensi yang telah dibersihkan dengan nomor handphone yang telah dibersihkan
+      const combinedValue = extCleaned + ' ' + noHandphoneCleaned;
+
+      // Mengatur nilai input yang akan dikirim ke controller
+      noHandphoneInput.value = combinedValue;
+
+      // Lanjutkan dengan mengirimkan formulir
+      form.submit();
+    });
+  });
+})
+  (jQuery);
