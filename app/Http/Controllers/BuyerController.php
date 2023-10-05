@@ -79,7 +79,7 @@ class BuyerController extends Controller
         $noHandphoneCleaned = preg_replace('/[^1-9]/', '', $noHandphone);
     
         // Menggabungkan ekstensi yang telah dibersihkan dengan nomor handphone yang telah dibersihkan
-        $combinedValue = $extCleaned . ' ' . $noHandphoneCleaned;
+        $combinedValue = '('. $extCleaned . ')' . ' - '. $noHandphoneCleaned;
     
         // Menambahkan ekstensi dan nomor handphone yang telah digabungkan ke dalam data yang akan disimpan
         $validated['no_buyer'] = $combinedValue;
@@ -133,8 +133,10 @@ class BuyerController extends Controller
         $landingpage = LandingPage::latest()->first();
         $category = CategoryProduct::get();
         $buyer = Buyer::find($id);
+        $countrycodes = LibraryExt::get();
+
         
-        return view('dashboard.buyer.edit', compact('title','category','landingpage', 'buyer'));
+        return view('dashboard.buyer.edit', compact('title','category','landingpage', 'buyer','countrycodes'));
     }
 
     /**
@@ -147,7 +149,7 @@ class BuyerController extends Controller
     public function update(Request $request, $id)
     {
         //
-        $writer = Buyer::find($id);
+        // $buyer = Buyer::find($id);
 
         $validated = request()->validate([
             'category_id' => 'required|integer',
@@ -165,7 +167,27 @@ class BuyerController extends Controller
 
 
         ]);
+
+        // Mengambil nilai dari input ekstensi
+        $extSelect = $request->input('ext');
+
+        // Mengambil nilai dari input nomor handphone
+        $noHandphone = $validated['no_buyer'];
+    
+        // Membersihkan ekstensi dengan ekspresi regulernya
+        // $extCleaned = preg_replace('/[^0-9]/', '', $extSelect);
+        $extCleaned = preg_replace('/[^0-9+]/', '',  $extSelect);
+
+        // Membersihkan nomor handphone dengan ekspresi regulernya
+        $noHandphoneCleaned = preg_replace('/[^1-9]/', '', $noHandphone);
+    
+        // Menggabungkan ekstensi yang telah dibersihkan dengan nomor handphone yang telah dibersihkan
+        $combinedValue = '('. $extCleaned . ')' . ' - '. $noHandphoneCleaned;
+    
+        // Menambahkan ekstensi dan nomor handphone yang telah digabungkan ke dalam data yang akan disimpan
+        $validated['no_buyer'] = $combinedValue;
         // Cek apakah negara_tujuan tidak memiliki value
+
         if (empty($validated['negara_tujuan'])) {
             $validated['status_buyer'] = 'data buyer mentah';
         } else {
