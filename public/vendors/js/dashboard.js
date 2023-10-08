@@ -345,38 +345,5 @@
       showSelectedRating: false
     });
   });
-
-  // Ini Untuk extension yang ada di halaman create ataupun edit buyer
-  document.addEventListener('DOMContentLoaded', function () {
-    const extSelect = document.getElementById('ext');
-    const noHandphoneInput = document.getElementById('no_buyer');
-
-    const form = document.querySelector('form');
-
-    form.addEventListener('submit', function (e) {
-      e.preventDefault();
-
-      // Mengambil ekstensi yang dipilih oleh pengguna
-      const extValue = extSelect.value;
-
-      // Membersihkan ekstensi dengan ekspresi regulernya
-      const extCleaned = extValue.replace(/[^0-9]/g, '');
-
-      // Mengambil nilai nomor handphone dari input
-      const noHandphoneValue = noHandphoneInput.value;
-
-      // Membersihkan nomor handphone dengan ekspresi regulernya
-      const noHandphoneCleaned = noHandphoneValue.replace(/[^0-9]/g, '');
-
-      // Menggabungkan ekstensi yang telah dibersihkan dengan nomor handphone yang telah dibersihkan
-      const combinedValue = extCleaned + ' ' + noHandphoneCleaned;
-
-      // Mengatur nilai input yang akan dikirim ke controller
-      noHandphoneInput.value = combinedValue;
-
-      // Lanjutkan dengan mengirimkan formulir
-      form.submit();
-    });
-  });
 })
   (jQuery);
