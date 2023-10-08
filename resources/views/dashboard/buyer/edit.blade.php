@@ -19,6 +19,37 @@
                         </p>
 
 						<div class="row">
+                            
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label for="nama_produk" class="col-sm-4 col-form-label">Full Name Product</label>
+                                    <div class="col-sm-12">
+                                        <input id="nama_produk" name="nama_produk" type="text" class="form-control @error('nama_produk') is-invalid @enderror" value="{{ $buyer->nama_produk }}" />
+                                        @error('nama_produk')
+                                            <span class="text-danger">{{ $message }}</span>
+                                        @enderror
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="dataentry_product_id" class="col-md-2 col-form-label">Product Name</label>
+                                    <div class="col-sm-12">
+										<select name="dataentry_product_id" class="form-control @error('dataentry_product_id') border-danger @enderror py-3" id="dataentry_product_id">
+											<option selected disabled>--- Choose One ---</option>
+											@foreach ($dataentry as $row)
+												<option value="{{ $row->id }}" @if($row->dataentry_product_id === $row->id) selected @endif {{ (collect(old('dataentry_product_id'))->contains($row->id)) ? 'selected' : ''}}>{{ $row->product }}</option>
+											@endforeach
+										</select>
+
+                                        @error('dataentry_product_id')
+                                            <span class="text-danger">{{ $message }}</span>
+                                        @enderror
+                                    </div>
+                                </div>
+                            </div>
+                            
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="category_id" class="col-md-2 col-form-label">Category Name</label>
@@ -126,7 +157,7 @@
 							
 							<div class="col-md-6">
                                 <div class="form-group">
-                                    <label for="nama_perusahaan" class="col-sm-4s col-form-label">Nama Perusahaan</label>
+                                    <label for="nama_perusahaan" class="col-sm-4 col-form-label">Nama Perusahaan</label>
                                     <div class="col-sm-12">
                                         <input id="nama_perusahaan" name="nama_perusahaan" type="text" class="form-control @error('nama_perusahaan') is-invalid @enderror" value="{{ $buyer->nama_perusahaan }}" />
                                         @error('nama_perusahaan')

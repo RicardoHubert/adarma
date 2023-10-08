@@ -30,8 +30,11 @@
                                     <th class="font-weight-bold text-black">
                                         Negara tujuan  
                                     </th>
+                                    <th>
+                                        Nama Produk    
+                                    </th>
 									<th class="font-weight-bold text-black">
-                                        Kategory product
+                                        Kategori produk
                                     </th>
                                     <th class="font-weight-bold text-black">
                                         Kontak buyer
@@ -76,6 +79,9 @@
                                         </td>
                                         <td>
                                             {{ $row->negara_tujuan }}
+                                        </td>
+                                        <td>
+                                            {{ $row->nama_produk }}
                                         </td>
 										<td>
                                             {{ $row->category->name }}

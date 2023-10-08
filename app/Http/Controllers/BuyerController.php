@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Model\LandingPage;
 use App\Model\CategoryProduct;
+use App\Model\DataentryProduct;
 use App\Model\Buyer;
 use App\Model\LibraryExt;
 
@@ -37,9 +38,10 @@ class BuyerController extends Controller
         //
         $title = 'Add Buyer';
         $category = CategoryProduct::get();
+        $dataentry = DataentryProduct::get();
         $landingpage = LandingPage::latest()->first();
         $countrycodes = LibraryExt::get();
-        return view('dashboard.buyer.create', compact('landingpage','category','title','countrycodes'));
+        return view('dashboard.buyer.create', compact('landingpage','category','title','countrycodes','dataentry'));
     }
 
     /**
@@ -51,9 +53,11 @@ class BuyerController extends Controller
     public function store(Request $request)
     {
         $validated = request()->validate([
+            'nama_produk' => 'required|string',
             'nama' => 'required|string',
             'negara_tujuan' => 'string|nullable',
             'category_id' => 'required|integer',
+            'dataentry_product_id' => 'required|integer',
             'no_buyer' => 'required|string',
             'email' => 'required|string|email',
             'nama_perusahaan' => 'required|string',
@@ -132,11 +136,12 @@ class BuyerController extends Controller
         $title = 'Edit Buyer';
         $landingpage = LandingPage::latest()->first();
         $category = CategoryProduct::get();
+        $dataentry = DataentryProduct::get();
         $buyer = Buyer::find($id);
         $countrycodes = LibraryExt::get();
 
         
-        return view('dashboard.buyer.edit', compact('title','category','landingpage', 'buyer','countrycodes'));
+        return view('dashboard.buyer.edit', compact('title','category','landingpage', 'buyer','countrycodes','dataentry'));
     }
 
     /**
@@ -152,7 +157,9 @@ class BuyerController extends Controller
         // $buyer = Buyer::find($id);
 
         $validated = request()->validate([
+            'nama_produk' => 'required|string',
             'category_id' => 'required|integer',
+            'dataentry_product_id' => 'required|integer',
             'nama' => 'required|string',
             'negara_tujuan' => 'string|nullable',              
             'no_buyer' => 'required|string',
