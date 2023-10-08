@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Model\DataentryProduct;
+use App\Model\LandingPage;
 use App\User;
 
 
@@ -18,9 +19,9 @@ class DataEntryController extends Controller
     {
         //
         $title = 'Dataentry';
-
+        $landingpage = LandingPage::latest()->first();
         $get_product = DataentryProduct::get();
-        return view('dashboard.dataentry.index', compact('get_product','title'));
+        return view('dashboard.dataentry.index', compact('get_product','title','landingpage'));
 
     }
 
