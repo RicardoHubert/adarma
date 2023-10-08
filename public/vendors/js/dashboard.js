@@ -36,7 +36,6 @@
           ticks: {
             beginAtZero: true,
             display: false,
-
           },
           gridLines: {
             display: false,
@@ -65,8 +64,9 @@
       tooltips: {
         enabled: false
       }
-
     };
+
+
     if ($("#customers").length) {
       var barChartCanvas = $("#customers").get(0).getContext("2d");
       // This will get the first returned node in the jQuery collection.
@@ -345,5 +345,4 @@
       showSelectedRating: false
     });
   });
-})
-  (jQuery);
+})(jQuery);
