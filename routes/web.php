@@ -10,6 +10,7 @@ use App\Http\Controllers\ProductRequestController;
 use App\Http\Controllers\BuyerController;
 use App\Http\Controllers\WriterController;
 use App\Http\Controllers\GuestController;
+use App\Http\Controllers\DataEntryController;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -163,9 +164,18 @@ Route::group(['prefix' => 'dashboard', 'middleware' => ['auth', 'role:super_admi
     Route::post('/buyer/store', [BuyerController::class, 'store'])->name('buyer.store');
     Route::get('/buyer/{id}/edit', [BuyerController::class, 'edit'])->name('buyer.edit');
     Route::put('/buyer/{id}/update', [BuyerController::class, 'update'])->name('buyer.update');
-
     Route::delete('/buyer/{id}/destroy', [BuyerController::class, 'destroy'])->name('buyer.destroy');
 
+    // Dashboard CRUD Data Entry
+    Route::get('/dataentry',[DataEntryController::class,'index'])->name('dataentry.index');
+    Route::get('/dataentry/create', [DataEntryController::class, 'create'])->name('dataentry.create');
+    Route::post('/dataentry/store', [DataEntryController::class, 'store'])->name('dataentry.store');
+
+    Route::delete('/dataentry/{id}/destroy', [DataEntryController::class, 'destroy'])->name('dataentry.destroy');
+
+
+    // Dashboard CRUD Transactional Data
+    // Route::get('/dataentry',[DataEntryController::class,'indexin'])->name('transactional.index');
 
 });
 
