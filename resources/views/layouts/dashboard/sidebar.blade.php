@@ -77,7 +77,7 @@
             <li class="nav-item mb-1">
                 <a class="nav-link" data-toggle="collapse" href="#product" aria-expanded="false" aria-controls="product">
                     <i class="icon-bag menu-icon"></i>
-                        <span class="menu-title">Product</span>
+                        <span class="menu-title">Frontend Product</span>
                     <i class="menu-arrow"></i>
                 </a>            
                 <div class="collapse" id="product">
@@ -92,12 +92,26 @@
             <li class="nav-item mb-1">
                 <a class="nav-link" data-toggle="collapse" href="#buyer" aria-expanded="false" aria-controls="buyer">
                     <i class="icon-bag menu-icon"></i>
-                        <span class="menu-title">Buyer</span>
+                        <span class="menu-title">Marketing Data</span>
                     <i class="menu-arrow"></i>
                 </a>            
                 <div class="collapse" id="buyer">
                     <ul class="nav flex-column sub-menu">
                         <li class="nav-item mb-1 @if ($title == 'Buyer') active @endif"> <a class="nav-link @if ($title == 'Buyer') active @endif" href="{{ route('buyer.index') }}">Data Buyer</a></li>
+                    </ul>
+                </div>
+            </li>
+
+
+            <li class="nav-item mb-1">
+                <a class="nav-link" data-toggle="collapse" href="#dataentry" aria-expanded="false" aria-controls="dataentry">
+                    <i class="icon-bag menu-icon"></i>
+                        <span class="menu-title">Data Entry</span>
+                    <i class="menu-arrow"></i>
+                </a>            
+                <div class="collapse" id="dataentry">
+                    <ul class="nav flex-column sub-menu">
+                        <li class="nav-item mb-1 @if ($title == 'Dataentry') active @endif"> <a class="nav-link @if ($title == 'Dataentry') active @endif" href="{{ route('dataentry.index') }}">Product</a></li>
                     </ul>
                 </div>
             </li>
