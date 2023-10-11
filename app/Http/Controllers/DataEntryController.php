@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Model\DataentryProduct;
+use App\Model\DataEntryPaymentTerms;
 use App\Model\LandingPage;
 use App\User;
 
@@ -18,10 +19,10 @@ class DataEntryController extends Controller
     public function index()
     {
         //
-        $title = 'Dataentry';
+        $title = 'DataentryProduct';
         $landingpage = LandingPage::latest()->first();
         $get_product = DataentryProduct::get();
-        return view('dashboard.dataentry.index', compact('get_product','title','landingpage'));
+        return view('dashboard.dataentry.dataentry_product.index', compact('get_product','title','landingpage'));
 
     }
 
@@ -33,7 +34,7 @@ class DataEntryController extends Controller
     public function create()
     {
         $title = 'Add Dataentry';
-        return view('dashboard.dataentry.create', compact('title'));
+        return view('dashboard.dataentry.dataentry_product.create', compact('title'));
     }
 
     /**
@@ -104,4 +105,41 @@ class DataEntryController extends Controller
         return redirect()->route('dataentry.index')->with('success', 'Data Entry Produk berhasil dihapus!');
 
     }
+
+    public function index_payment(){
+        $title = 'DataentryPayment';
+        $landingpage = LandingPage::latest()->first();
+        $get_payment_terms = DataEntryPaymentTerms::get();
+        return view('dashboard.dataentry.dataentry_payment.index', compact('get_payment_terms','title','landingpage'));
+    }
+
+    public function create_payment()
+    {
+        $title = 'Add Dataentry Payment';
+        return view('dashboard.dataentry.dataentry_payment.create', compact('title'));
+    }
+    public function store_payment(Request $request)
+    {
+        //
+        $validated = request()->validate([
+            'name_payment' => 'required|string',
+        ]);
+
+        DataEntryPaymentTerms::create($validated);
+
+        return redirect()->route('dataentry_payment.index')->with('success', 'Entry Payment berhasil dibuat!');
+    }
+
+    public function destroy_payment($id)
+    {
+        //
+        $dataentry = DataEntryPaymentTerms::find($id);
+          
+        $dataentry->delete();
+    
+        return redirect()->route('dataentry_payment.index')->with('success', 'Data Entry Payment berhasil dihapus!');
+
+    }
+
+
 }
