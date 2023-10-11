@@ -182,7 +182,7 @@ Route::group(['prefix' => 'dashboard', 'middleware' => ['auth', 'role:super_admi
 
     Route::get('/dataentry_payment',[DataEntryController::class,'index_payment'])->name('dataentry_payment.index');
     Route::get('/dataentry_payment/create', [DataEntryController::class, 'create_payment'])->name('dataentry_payment.create');
-    Route::post('/dataentry/store', [DataEntryController::class, 'store_payment'])->name('dataentry_payment.store');
+    Route::post('/dataentry_payment/store', [DataEntryController::class, 'store_payment'])->name('dataentry_payment.store');
     Route::delete('/dataentry_payment/{id}/destroy', [DataEntryController::class, 'destroy_payment'])->name('dataentry_payment.destroy');
 
     // Dashboard CRUD Transactional Data
