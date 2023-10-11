@@ -31,44 +31,7 @@
                                     </div>
                                 </div>
                             </div>
-
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label for="dataentry_product_id" class="col-md-2 col-form-label">Product Name</label>
-                                    <div class="col-sm-12">
-										<select name="dataentry_product_id" class="form-control @error('dataentry_product_id') border-danger @enderror py-3" id="dataentry_product_id">
-											<option selected disabled>--- Choose One ---</option>
-											@foreach ($dataentry as $row)
-												<option value="{{ $row->id }}" @if($row->dataentry_product_id === $row->id) selected @endif {{ (collect(old('dataentry_product_id'))->contains($row->id)) ? 'selected' : ''}}>{{ $row->product }}</option>
-											@endforeach
-										</select>
-
-                                        @error('dataentry_product_id')
-                                            <span class="text-danger">{{ $message }}</span>
-                                        @enderror
-                                    </div>
-                                </div>
-                            </div>
                             
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label for="category_id" class="col-md-2 col-form-label">Category Name</label>
-                                    <div class="col-sm-12">
-										<select name="category_id" class="form-control @error('category_id') border-danger @enderror py-3" id="category_id">
-											<option selected disabled>--- Choose One ---</option>
-											@foreach ($category as $row)
-												<option value="{{ $row->id }}" @if($buyer->category_id === $row->id) selected @endif {{ (collect(old('category_id'))->contains($row->id)) ? 'selected' : ''}}>{{ $row->name }}</option>
-											@endforeach
-										</select>
-
-                                        @error('category_id')
-                                            <span class="text-danger">{{ $message }}</span>
-                                        @enderror
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
