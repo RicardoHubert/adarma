@@ -9,14 +9,10 @@ class Buyer extends Model
 {
     //
     protected $guarded = ['id'];
-        
-        public function category()
+    
+    public function transactional()
     {
-        return $this->belongsTo(CategoryProduct::class, 'category_id', 'id');
-    }
-
-    public function dataentryproduct(){
-        return $this->belongsTo(DataentryProduct::class, 'dataentry_product_id','id');
+        return $this->hasOne(Transactional::class);
     }
 }
 

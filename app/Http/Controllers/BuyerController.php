@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Model\LandingPage;
 use App\Model\CategoryProduct;
 use App\Model\DataentryProduct;
+use App\Model\DataEntryPaymentTerms;
+use App\Model\Transactional;
 use App\Model\Buyer;
 use App\Model\LibraryExt;
 
@@ -56,8 +58,8 @@ class BuyerController extends Controller
             'nama_produk' => 'required|string',
             'nama' => 'required|string',
             'negara_tujuan' => 'string|nullable',
-            'category_id' => 'required|integer',
-            'dataentry_product_id' => 'required|integer',
+            // 'category_id' => 'required|integer',
+            // 'dataentry_product_id' => 'required|integer',
             'no_buyer' => 'required|string',
             'email' => 'required|string|email',
             'nama_perusahaan' => 'required|string',
@@ -158,8 +160,6 @@ class BuyerController extends Controller
 
         $validated = request()->validate([
             'nama_produk' => 'required|string',
-            'category_id' => 'required|integer',
-            'dataentry_product_id' => 'required|integer',
             'nama' => 'required|string',
             'negara_tujuan' => 'string|nullable',              
             'no_buyer' => 'required|string',
@@ -236,4 +236,49 @@ class BuyerController extends Controller
     
         return redirect()->route('buyer.index')->with('success', 'Data buyer berhasil dihapus!');
     }
-}
+
+    public function buyer_to_transactional_store_forward($id)
+    {
+        $buyer = Buyer::find($id);
+        Transactional::create([
+            'buyer_id' => $buyer->id,
+        ]);
+    
+        return redirect()->route('buyer.index')->with('success', 'Data buyer berhasil ditambahkan!');
+    }
+    
+    public function transactional_index(){
+        $title = "Transactional";
+        $transactional = Transactional::get();
+        $landingpage = LandingPage::latest()->first();
+        
+        return view('dashboard.transactional\.index', compact('transactional','landingpage','title'));
+    }
+
+    public function transactional_edit($id){
+        $title = "Transactional Edit";
+        $transactional = Transactional::find($id);
+        $landingpage = LandingPage::latest()->first();
+        $category = CategoryProduct::get();
+        $dataentry = DataentryProduct::get();
+        $dataentry_payment = DataEntryPaymentTerms::get();
+
+        
+        return view('dashboard.transactional.edit', compact('title','landingpage','category','dataentry','dataentry_payment','transactional'));
+    }
+
+    public function transactional_update(Request $request, $id){
+        $validated = request()->validate([
+            'category_id' => 'required|integer',
+            'dataentry_product_id' => 'required|integer',
+            'payment_terms_id' => 'required|integer'
+            
+        ]);
+
+        Transactional::find($id)->update($validated);  
+        return redirect()->route('transactional.index')->with('success', 'Data buyer berhasil diperbarui!');
+
+    }
+
+
+    }

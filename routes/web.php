@@ -165,14 +165,25 @@ Route::group(['prefix' => 'dashboard', 'middleware' => ['auth', 'role:super_admi
     Route::get('/buyer/{id}/edit', [BuyerController::class, 'edit'])->name('buyer.edit');
     Route::put('/buyer/{id}/update', [BuyerController::class, 'update'])->name('buyer.update');
     Route::delete('/buyer/{id}/destroy', [BuyerController::class, 'destroy'])->name('buyer.destroy');
+    Route::get('/buyer/{id}/forward',[BuyerController::class,'buyer_to_transactional_store_forward'])->name('transactional.forward');
 
-    // Dashboard CRUD Data Entry
+
+    // Dashboard CRUD Transactional using BuyerController
+
+    Route::get('/transactional',[BuyerController::class,'transactional_index'])->name('transactional.index');
+    Route::get('/transactional/{id}/edit',[BuyerController::class,'transactional_edit'])->name('transactional.edit');
+    Route::put('/transactional/{id}/update', [BuyerController::class, 'transactional_update'])->name('transactional.update');
+
+    // Dashboard CRUD Data Entry Product
     Route::get('/dataentry',[DataEntryController::class,'index'])->name('dataentry.index');
     Route::get('/dataentry/create', [DataEntryController::class, 'create'])->name('dataentry.create');
     Route::post('/dataentry/store', [DataEntryController::class, 'store'])->name('dataentry.store');
-
     Route::delete('/dataentry/{id}/destroy', [DataEntryController::class, 'destroy'])->name('dataentry.destroy');
 
+    Route::get('/dataentry_payment',[DataEntryController::class,'index_payment'])->name('dataentry_payment.index');
+    Route::get('/dataentry_payment/create', [DataEntryController::class, 'create_payment'])->name('dataentry_payment.create');
+    Route::post('/dataentry/store', [DataEntryController::class, 'store_payment'])->name('dataentry_payment.store');
+    Route::delete('/dataentry_payment/{id}/destroy', [DataEntryController::class, 'destroy_payment'])->name('dataentry_payment.destroy');
 
     // Dashboard CRUD Transactional Data
     // Route::get('/dataentry',[DataEntryController::class,'indexin'])->name('transactional.index');
