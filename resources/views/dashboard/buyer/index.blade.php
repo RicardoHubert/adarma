@@ -33,9 +33,6 @@
                                     <th>
                                         Nama Produk    
                                     </th>
-									<th class="font-weight-bold text-black">
-                                        Kategori produk
-                                    </th>
                                     <th class="font-weight-bold text-black">
                                         Kontak buyer
                                     </th>
@@ -83,9 +80,6 @@
                                         <td>
                                             {{ $row->nama_produk }}
                                         </td>
-										<td>
-                                            {{ $row->category->name }}
-                                        </td>
                                         <td>
                                             {{ $row->no_buyer }}
                                         </td>
@@ -121,6 +115,7 @@
                                                 <a href="{{ route('buyer.edit', $row->id) }}" class="mr-2">
                                                     <i class="fa fa-pencil-square-o fa-lg text-black hover-edit"></i>
                                                 </a>
+
                                                 <form action="{{ route('buyer.destroy', $row->id) }}" method="POST">
                                                 @csrf
                                                 @method('DELETE')
@@ -128,6 +123,10 @@
                                                         <i class="fa fa-trash-o fa-lg text-black hover-delete"></i>
                                                     </button>
                                                 </form>
+
+                                                <a href="{{ route('transactional.forward', $row->id) }}" class="ml-2">
+                                                    <i class="fa fa-money fa-lg text-black hover-edit"></i>
+                                                </a>
                                             </div>
                                         </td>
                                     </tr>
