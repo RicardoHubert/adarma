@@ -252,7 +252,7 @@ class BuyerController extends Controller
         $transactional = Transactional::get();
         $landingpage = LandingPage::latest()->first();
         
-        return view('dashboard.transactional\.index', compact('transactional','landingpage','title'));
+        return view('dashboard.transactional.index', compact('transactional','landingpage','title'));
     }
 
     public function transactional_edit($id){
