@@ -1,0 +1,38 @@
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+class CreateTransactionalsTable extends Migration
+{
+    /**
+     * Run the migrations.
+     *
+     * @return void
+     */
+    public function up()
+    {
+        Schema::create('transactionals', function (Blueprint $table) {
+            $table->id();
+            $table->integer('buyer_id')->nullable();
+            $table->integer('category_id')->nullable();
+            $table->integer('dataentry_product_id')->nullable();
+            $table->integer('payment_terms_id')->nullable();
+            $table->integer('shipping_terms_id')->nullable();
+            $table->string('price')->nullable();
+            $table->string('price_negotiation')->nullable();
+            $table->timestamps();
+        });
+    }
+
+    /**
+     * Reverse the migrations.
+     *
+     * @return void
+     */
+    public function down()
+    {
+        Schema::dropIfExists('transactionals');
+    }
+}
