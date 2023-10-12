@@ -90,7 +90,7 @@
                             
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label for="shipping_terms_id" class="col-md-2 col-form-label">Payment Terms</label>
+                                    <label for="shipping_terms_id" class="col-md-2 col-form-label">Shipping Terms</label>
                                     <div class="col-sm-12">
 										<select name="shipping_terms_id" class="form-control @error('shipping_terms_id') border-danger @enderror py-3" id="shipping_terms_id">
 											<option selected disabled>--- Choose One ---</option>
