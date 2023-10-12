@@ -7,6 +7,7 @@ use App\Model\LandingPage;
 use App\Model\CategoryProduct;
 use App\Model\DataentryProduct;
 use App\Model\DataEntryPaymentTerms;
+use App\Model\DataEntryShippingTerms;
 use App\Model\Transactional;
 use App\Model\Buyer;
 use App\Model\LibraryExt;
@@ -262,16 +263,18 @@ class BuyerController extends Controller
         $category = CategoryProduct::get();
         $dataentry = DataentryProduct::get();
         $dataentry_payment = DataEntryPaymentTerms::get();
+        $dataentry_shipping = DataEntryShippingTerms::get();
 
         
-        return view('dashboard.transactional.edit', compact('title','landingpage','category','dataentry','dataentry_payment','transactional'));
+        return view('dashboard.transactional.edit', compact('title','landingpage','category','dataentry','dataentry_payment','dataentry_shipping','transactional'));
     }
 
     public function transactional_update(Request $request, $id){
         $validated = request()->validate([
             'category_id' => 'required|integer',
             'dataentry_product_id' => 'required|integer',
-            'payment_terms_id' => 'required|integer'
+            'payment_terms_id' => 'required|integer',
+            'shipping_terms_id' => 'required|integer'
             
         ]);
 

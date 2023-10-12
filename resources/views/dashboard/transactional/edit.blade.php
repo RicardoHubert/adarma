@@ -70,8 +70,7 @@
                         </div>
 
                         <div class="row">
-
-						<div class="col-md-6">
+						    <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="payment_terms_id" class="col-md-2 col-form-label">Payment Terms</label>
                                     <div class="col-sm-12">
@@ -89,15 +88,22 @@
                                 </div>
                             </div>
                             
-                            <div class="col-md-3">
+                            <div class="col-md-6">
                                 <div class="form-group">
-                                    <label for="shipping_terms" class="col-sm-4 col-form-label">Shipping Terms</label>
+                                    <label for="shipping_terms_id" class="col-md-2 col-form-label">Payment Terms</label>
                                     <div class="col-sm-12">
-                                        <input id="shipping_terms=" name="shipping_terms" type="text" class="form-control @error('shipping_terms') is-invalid @enderror" value="{{ $transactional->buyer->shipping_terms }}" />
-                                        @error('shipping_terms')
+										<select name="shipping_terms_id" class="form-control @error('shipping_terms_id') border-danger @enderror py-3" id="shipping_terms_id">
+											<option selected disabled>--- Choose One ---</option>
+											@foreach ($dataentry_shipping as $row)
+												<option value="{{ $row->id }}" @if($row->shipping_terms_id === $row->id) selected @endif {{ (collect(old('shipping_terms_id'))->contains($row->id)) ? 'selected' : ''}}>{{ $row->name_shipping }}</option>
+											@endforeach
+										</select>
+
+                                        @error('shipping_terms_id')
                                             <span class="text-danger">{{ $message }}</span>
                                         @enderror
                                     </div>
+                                </div>
                                 </div>
                             </div>
                         </div>

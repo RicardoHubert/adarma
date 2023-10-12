@@ -55,6 +55,9 @@
                                         Payment Terms
                                     </th>
                                     <th class="font-weight-bold text-black">
+                                        Shipping Terms
+                                    </th>
+                                    <th class="font-weight-bold text-black">
                                         kebutuhan
                                     </th>
                                     <!-- <th class="font-weight-bold text-black">
@@ -128,6 +131,11 @@
 										<td>
                                             @if ($row->payment_terms)
                                                 {{ $row->payment_terms->name_payment }}
+                                            @endif
+                                        </td>
+                                        <td>
+                                            @if ($row->shipping_terms)
+                                                {{ $row->shipping_terms->name_shipping }}
                                             @endif
                                         </td>
                                         <td>
