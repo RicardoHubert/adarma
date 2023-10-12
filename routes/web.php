@@ -180,10 +180,17 @@ Route::group(['prefix' => 'dashboard', 'middleware' => ['auth', 'role:super_admi
     Route::post('/dataentry/store', [DataEntryController::class, 'store'])->name('dataentry.store');
     Route::delete('/dataentry/{id}/destroy', [DataEntryController::class, 'destroy'])->name('dataentry.destroy');
 
+    // Dashboard CRUD Data Entry Payment
     Route::get('/dataentry_payment',[DataEntryController::class,'index_payment'])->name('dataentry_payment.index');
     Route::get('/dataentry_payment/create', [DataEntryController::class, 'create_payment'])->name('dataentry_payment.create');
     Route::post('/dataentry_payment/store', [DataEntryController::class, 'store_payment'])->name('dataentry_payment.store');
     Route::delete('/dataentry_payment/{id}/destroy', [DataEntryController::class, 'destroy_payment'])->name('dataentry_payment.destroy');
+
+    // Dashboard CRUD Data Entry Shipping Terms
+    Route::get('/dataentry_shipping',[DataEntryController::class,'index_shipping'])->name('dataentry_shipping.index');
+    Route::get('/dataentry_shipping/create', [DataEntryController::class, 'create_shipping'])->name('dataentry_shipping.create');
+    Route::post('/dataentry_shipping/store', [DataEntryController::class, 'store_shipping'])->name('dataentry_shipping.store');
+    Route::delete('/dataentry_shipping/{id}/destroy', [DataEntryController::class, 'destroy_shipping'])->name('dataentry_shipping.destroy');
 
     // Dashboard CRUD Transactional Data
     // Route::get('/dataentry',[DataEntryController::class,'indexin'])->name('transactional.index');

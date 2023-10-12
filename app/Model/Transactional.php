@@ -27,4 +27,9 @@ class Transactional extends Model
     {
         return $this->belongsTo(DataEntryPaymentTerms::class,'payment_terms_id','id');
     }
+
+    public function shipping_terms()
+    {
+        return $this->belongsTo(DataEntryShippingTerms::class,'shipping_terms_id','id');
+    }
 }
