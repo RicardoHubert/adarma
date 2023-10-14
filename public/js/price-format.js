@@ -30,4 +30,12 @@ document.addEventListener('DOMContentLoaded', function () {
 			formatPriceInput(e.target);
 		});
 	}
+	const pricenegoInput = document.getElementById('price_negotiation');
+
+	if (pricenegoInput) {
+		// Menambahkan event listener untuk input dengan id 'price'
+		pricenegoInput.addEventListener('input', function (e) {
+			formatPriceInput(e.target);
+		});
+	}
 });
