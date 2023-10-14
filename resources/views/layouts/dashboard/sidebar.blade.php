@@ -113,7 +113,7 @@
                 </a>            
                 <div class="collapse" id="entry">
                     <ul class="nav flex-column sub-menu">
-                    <li class="nav-item mb-1 @if ($title == 'DataEntryProduct') active @endif"> <a class="nav-link @if ($title == 'DataEntryProduct') active @endif" href="{{ route('dataentry.index') }}">Data Buyer</a></li>
+                    <li class="nav-item mb-1 @if ($title == 'DataEntryProduct') active @endif"> <a class="nav-link @if ($title == 'DataEntryProduct') active @endif" href="{{ route('dataentry.index') }}">Data Produk</a></li>
                     <li class="nav-item mb-1 @if ($title == 'DataEntryPayment') active @endif"> <a class="nav-link @if ($title == 'DataEntryPayment') active @endif" href="{{ route('dataentry_payment.index') }}"> Payment Terms</a></li> 
                     <li class="nav-item mb-1 @if ($title == 'DataEntryShipment') active @endif"> <a class="nav-link @if ($title == 'DataEntryShipment') active @endif" href="{{ route('dataentry_shipping.index') }}"> Shipping Terms</a></li>       
       

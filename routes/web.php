@@ -173,6 +173,8 @@ Route::group(['prefix' => 'dashboard', 'middleware' => ['auth', 'role:super_admi
     Route::get('/transactional',[BuyerController::class,'transactional_index'])->name('transactional.index');
     Route::get('/transactional/{id}/edit',[BuyerController::class,'transactional_edit'])->name('transactional.edit');
     Route::put('/transactional/{id}/update', [BuyerController::class, 'transactional_update'])->name('transactional.update');
+    Route::delete('/transactional/{id}/destroy', [BuyerController::class, 'transactional_delete'])->name('transactional.destroy');
+
 
     // Dashboard CRUD Data Entry Product
     Route::get('/dataentry',[DataEntryController::class,'index'])->name('dataentry.index');

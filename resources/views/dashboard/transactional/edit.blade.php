@@ -104,7 +104,32 @@
                                         @enderror
                                     </div>
                                 </div>
-                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="price" class="col-md-4 col-form-label">Price</label>
+                                        <div class="col-sm-12">
+                                            <input id="price" name="price" type="text" class="form-control @error('price') is-invalid @enderror" value="{{ $transactional->price }}" placeholder="US$"/>
+
+                                            @error('price')
+                                                <span class="text-danger">{{ $message }}</span>
+                                            @enderror
+                                        </div>
+                                    </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="price_negotiation" class="col-md-4 col-form-label">Negotiate Price</label>
+                                        <div class="col-sm-12">
+                                            <input id="price_negotiation" name="price_negotiation" type="text" class="form-control @error('price_negotiation') is-invalid @enderror" value="{{ $transactional->price_negotiation }}" placeholder="US$"/>
+
+                                            @error('price_negotiation')
+                                                <span class="text-danger">{{ $message }}</span>
+                                            @enderror
+                                        </div>
+                                    </div>
                             </div>
                         </div>
 
@@ -124,5 +149,6 @@
     </div>
   </div>
   <!-- content-wrapper ends -->
+  <script src="{{ asset('js/price-format.js') }}"></script>
 
 @endsection

@@ -269,19 +269,55 @@ class BuyerController extends Controller
         return view('dashboard.transactional.edit', compact('title','landingpage','category','dataentry','dataentry_payment','dataentry_shipping','transactional'));
     }
 
-    public function transactional_update(Request $request, $id){
+    public function transactional_update(Request $request, $id) {
         $validated = request()->validate([
             'category_id' => 'required|integer',
             'dataentry_product_id' => 'required|integer',
             'payment_terms_id' => 'required|integer',
-            'shipping_terms_id' => 'required|integer'
-            
+            'shipping_terms_id' => 'required|integer',
+            'price' => 'required|string',
+            'price_negotiation' => 'required|string'
         ]);
-
-        Transactional::find($id)->update($validated);  
+    
+        // Update the Transactional record
+        Transactional::find($id)->update($validated);
+    
+        // Check the conditions after updating
+        $transactional = Transactional::find($id);
+    
+        if ($transactional) {
+            // Define the conditions based on specific columns in the database
+            $buyerIdCondition = $transactional->buyer_id != null;
+            $categoryIdCondition = $transactional->category_id != null;
+            $dataentryProductIdCondition = $transactional->dataentry_product_id != null;
+            $paymentTermsIdCondition = $transactional->payment_terms_id != null;
+            $shippingTermsIdCondition = $transactional->shipping_terms_id != null;
+            $priceCondition = $transactional->price != null;
+            $priceNegotiationCondition = $transactional->price_negotiation != null;
+    
+            // Check if all conditions are met
+            if ($buyerIdCondition && $categoryIdCondition && $dataentryProductIdCondition && 
+                $paymentTermsIdCondition && $shippingTermsIdCondition && $priceCondition && 
+                $priceNegotiationCondition) {
+                // If all conditions are met, set 'status_transactional' to 'Done Transaction'
+                $transactional->update(['status_transaction' => 'Done Transaction']);
+            } else {
+                // If any condition is not met, set 'status_transactional' to an empty string
+                $transactional->update(['status_transaction' => '']);
+            }
+        }
+    
         return redirect()->route('transactional.index')->with('success', 'Data buyer berhasil diperbarui!');
-
     }
 
-
+    public function transactional_delete($id)
+    {
+        //
+        $transactional = Transactional::find($id);
+    
+        $transactional->delete();
+    
+        return redirect()->route('transactional.index')->with('success', 'Data transactional berhasil dihapus!');
     }
+    
+}

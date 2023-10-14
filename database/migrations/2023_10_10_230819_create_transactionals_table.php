@@ -22,6 +22,7 @@ class CreateTransactionalsTable extends Migration
             $table->integer('shipping_terms_id')->nullable();
             $table->string('price')->nullable();
             $table->string('price_negotiation')->nullable();
+            $table->string('status_transaction')->nullable();
             $table->timestamps();
         });
     }

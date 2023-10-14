@@ -51,6 +51,12 @@
 									<th class="font-weight-bold text-black">
                                         Alamat perusahaan
                                     </th>
+                                    <th class="font-weight-bold text-black">
+                                        Price Produk
+                                    </th>
+                                    <th class="font-weight-bold text-black">
+                                        Negotiate Produk
+                                    </th>
 									<th class="font-weight-bold text-black">
                                         Payment Terms
                                     </th>
@@ -128,6 +134,12 @@
                                                 {{ $row->buyer->alamat_perusahaan }}
                                             @endif
                                         </td>
+                                        <td>
+                                            {{$row -> price}}
+                                        </td>
+                                        <td>
+                                            {{$row -> price_negotiation}}
+                                        </td>
 										<td>
                                             @if ($row->payment_terms)
                                                 {{ $row->payment_terms->name_payment }}
@@ -164,17 +176,13 @@
                                                     <i class="fa fa-pencil-square-o fa-lg text-black hover-edit"></i>
                                                 </a>
 
-                                                <!-- <form action="{{ route('buyer.destroy', $row->id) }}" method="POST">
+                                                <form action="{{ route('transactional.destroy', $row->id) }}" method="POST">
                                                 @csrf
                                                 @method('DELETE')
                                                     <button type="submit" style="border: none; background-color:transparent;">
                                                         <i class="fa fa-trash-o fa-lg text-black hover-delete"></i>
                                                     </button>
                                                 </form>
-
-                                                <a href="{{ route('transactional.forward', $row->id) }}" class="ml-2">
-                                                    <i class="fa fa-money fa-lg text-black hover-edit"></i>
-                                                </a> -->
                                             </div>
                                         </td>
                                     </tr>
