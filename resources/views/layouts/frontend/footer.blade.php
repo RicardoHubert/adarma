@@ -6,14 +6,14 @@
                     <img src="{{ asset('images/logo-4nobg.png') }}" class="logo-responsive-foot" width="160" height="70">
                 </div>
                 <div class="d-flex mt-md-4">
-                    <a href="https://www.instagram.com/" target="_blank" class="mx-3" style="text-decoration: none; color:black;">
+                    <a href="https://www.instagram.com/adarmamandiri/" target="_blank" class="mx-3" style="text-decoration: none; color:black;">
                         <i class="fa fa-instagram fa-md-lg bg-white rounded-circle icon-sosmed-ig" style="padding: 10px 10px;" aria-hidden="true"></i>
                     </a>
-                    <a href="https://www.facebook.com/" target="_blank" class="mx-3" style="text-decoration: none; color:black;">
-                        <i class="fa fa-facebook fa-md-lg bg-white rounded-circle icon-sosmed-fb" style="padding: 10px 12px;" aria-hidden="true"></i>
+                    <a href="https://www.linkedin.com/in/adarma-mandiri-company-15aa05237/" target="_blank" class="mx-3" style="text-decoration: none; color:black;">
+                        <i class="fa fa-linkedin fa-md-lg bg-white rounded-circle icon-sosmed-fb" style="padding: 10px 12px;" aria-hidden="true"></i>
                     </a>
-                    <a href="https://twitter.com/" target="_blank" class="mx-3" style="text-decoration: none; color:black;">
-                        <i class="fa fa-twitter fa-md-lg bg-white rounded-circle icon-sosmed-tw" style="padding: 10px 9px;" aria-hidden="true"></i>
+                    <a href="https://wa.link/is9avs" target="_blank" class="mx-3" style="text-decoration: none; color:black;">
+                        <i class="fa fa-whatsapp fa-md-lg bg-white rounded-circle icon-sosmed-tw" style="padding: 10px 9px;" aria-hidden="true"></i>
                     </a>
                 </div>
             </div>
