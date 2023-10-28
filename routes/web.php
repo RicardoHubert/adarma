@@ -8,6 +8,7 @@ use App\Http\Controllers\FrontEndController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProductRequestController;
 use App\Http\Controllers\BuyerController;
+use App\Http\Controllers\SupplierController;
 use App\Http\Controllers\WriterController;
 use App\Http\Controllers\GuestController;
 use App\Http\Controllers\DataEntryController;
@@ -167,6 +168,12 @@ Route::group(['prefix' => 'dashboard', 'middleware' => ['auth', 'role:super_admi
     Route::delete('/buyer/{id}/destroy', [BuyerController::class, 'destroy'])->name('buyer.destroy');
     Route::get('/buyer/{id}/forward',[BuyerController::class,'buyer_to_transactional_store_forward'])->name('transactional.forward');
 
+    // Dashboard CRUD Supplier
+    Route::get('/supplier',[SupplierController::class,'index'])->name('supplier.index');
+    Route::get('/supplier/create', [SupplierController::class, 'create'])->name('supplier.create');
+    Route::post('/supplier/store', [SupplierController::class, 'store'])->name('supplier.store');
+    Route::get('/supplier/{id}/edit', [SupplierController::class, 'edit'])->name('supplier.edit');
+    Route::delete('/supplier/{id}/destroy', [SupplierController::class, 'destroy'])->name('supplier.destroy');
 
     // Dashboard CRUD Transactional using BuyerController
 
