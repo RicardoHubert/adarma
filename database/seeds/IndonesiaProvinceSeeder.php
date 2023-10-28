@@ -14,6 +14,8 @@ class IndonesiaProvinceSeeder extends Seeder
         //
         public function run()
     {
+        IndonesiaProvince::truncate();
+
         $provinces = [
             'Aceh',
             'Bali',
