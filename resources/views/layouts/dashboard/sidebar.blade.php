@@ -90,14 +90,15 @@
             </li>
 
             <li class="nav-item mb-1">
-                <a class="nav-link" data-toggle="collapse" href="#buyer" aria-expanded="false" aria-controls="buyer">
+                <a class="nav-link" data-toggle="collapse" href="#marketing" aria-expanded="false" aria-controls="marketing">
                     <i class="icon-bag menu-icon"></i>
                         <span class="menu-title">Marketing Data</span>
                     <i class="menu-arrow"></i>
                 </a>            
-                <div class="collapse" id="buyer">
+                <div class="collapse" id="marketing">
                     <ul class="nav flex-column sub-menu">
                         <li class="nav-item mb-1 @if ($title == 'Buyer') active @endif"> <a class="nav-link @if ($title == 'Buyer') active @endif" href="{{ route('buyer.index') }}">Data Buyer</a></li>
+                        <li class="nav-item mb-1 @if ($title == 'Supplier') active @endif"> <a class="nav-link @if ($title == 'Supplier') active @endif" href="{{ route('supplier.index') }}">Data Supplier</a></li>
                         <li class="nav-item mb-1 @if ($title == 'Transactional') active @endif"> <a class="nav-link @if ($title == 'Transactional') active @endif" href="{{ route('transactional.index') }}"> Transactional</a></li>                     
                     </ul>
                 </div>
