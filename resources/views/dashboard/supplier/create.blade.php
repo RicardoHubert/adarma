@@ -156,13 +156,15 @@
 							<div class="col-md-12">
                                 <div class="form-group">
                                     <label for="requirment_word_file" class="col-sm-4 col-form-label">Requirment Specification</label>
-                                    <div class="col-sm-12">
-                                        <input id="requirment_word_file" 
-										name="requirment_word_file" type="text" class="form-control @error('requirment_word_file') is-invalid @enderror" value="{{ old('requirment_word_file') }}" />
-                                        @error('requirment_word_file')
-                                            <span class="text-danger">{{ $message }}</span>
-                                        @enderror
-                                    </div>
+                                    <div class="col-sm-10">
+                                            <div class="@error('requirment_word_file') p-1 border border-danger @enderror">
+                                                <textarea id="requirment_word_file" name="requirment_word_file" cols="30" rows="10" class="form-control ckeditor @error('requirment_word_file') is-invalid @enderror">{{ old('requirment_word_file') }}</textarea>
+                                            </div>
+
+                                            @error('requirment_word_file')
+                                                <span class="text-danger">{{ $message }}</span>
+                                            @enderror
+                                        </div>
                                 </div>
                             </div>
                             
