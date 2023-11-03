@@ -4,9 +4,11 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Model\Supplier;
-// use App\Model\CategoryProduct;
 use App\IndonesiaProvince;
 use App\Model\LandingPage;
+
+use Dompdf\Dompdf;
+use Dompdf\Options;
 
 class SupplierController extends Controller
 {
@@ -95,11 +97,50 @@ class SupplierController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function generatePDFFile($id)
     {
-        //
-    }
+        // Fetch the supplier data by ID
+        $supplier = Supplier::find($id);
 
+        // Create a new Dompdf instance
+        $options = new Options();
+        $options->set('isHtml5ParserEnabled', true);
+        $options->set('isPhpEnabled', true);
+        $dompdf = new Dompdf($options);
+
+        // Build an HTML structure that includes the desired columns
+        $html = '<html>';
+        $html .= '<body>';
+        $html .= '<p>Nama Supplier: ' . $supplier->nama_supplier . '</p>';
+        $html .= '<p>Nama Produk: ' . $supplier->nama_produk . '</p>';
+        $html .= '<p>No Supplier: ' . $supplier->no_supplier . '</p>';
+        
+        // Decode and include the requirment_word_file (assuming it's HTML)
+        $html .= '<p>Requirment Specification Product:</p>';
+        $html .= html_entity_decode($supplier->requirment_word_file);
+        
+        $html .= '</body>';
+        $html .= '</html>';
+
+        // Load the HTML content into Dompdf
+        $dompdf->loadHtml($html);
+
+        // Set paper size and orientation (e.g., A4 portrait)
+        $dompdf->setPaper('A4', 'portrait');
+
+        // Render the HTML as PDF
+        $dompdf->render();
+
+       // Generate the PDF file
+       $pdfFilePath = storage_path('app/public/supplier_details.pdf');
+       file_put_contents($pdfFilePath, $dompdf->output());
+
+       // Return the PDF file for download
+       return response()->download($pdfFilePath, $supplier->nama_produk.'_Supplier_'.$supplier->nama_supplier.'.pdf');
+   }
+    
+        // Return the file for download
+    
     /**
      * Show the form for editing the specified resource.
      *

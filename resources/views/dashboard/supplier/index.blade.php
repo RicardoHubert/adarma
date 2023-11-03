@@ -87,8 +87,10 @@
                                             {{ $row->email }}
                                         </td>
                                         <td>
-                                            {{ $row->requirment_word_file }}
-                                        </td>
+										<a href="{{ route('supplier.generate-pdf', $row->id) }}" class="btn btn-success">
+											Download PDF    
+										</a>                                        
+										</td>
                                         <td>
                                             {{ $row->tipe_supplier }}
                                         </td>

@@ -174,6 +174,8 @@ Route::group(['prefix' => 'dashboard', 'middleware' => ['auth', 'role:super_admi
     Route::post('/supplier/store', [SupplierController::class, 'store'])->name('supplier.store');
     Route::get('/supplier/{id}/edit', [SupplierController::class, 'edit'])->name('supplier.edit');
     Route::delete('/supplier/{id}/destroy', [SupplierController::class, 'destroy'])->name('supplier.destroy');
+    Route::get('supplier/generate-pdf/{id}', 'SupplierController@generatePDFFile')->name('supplier.generate-pdf');
+
 
     // Dashboard CRUD Transactional using BuyerController
 
