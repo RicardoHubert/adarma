@@ -9,9 +9,11 @@ use App\Model\Product;
 use App\Model\ProductRequest;
 use App\Model\Role;
 use App\Model\Writer;
+use App\Model\CompanyDocument;
 use App\User;
 use App\Model\subscribers_news;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage; // Import the Storage facade
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
@@ -36,6 +38,57 @@ class DashboardController extends Controller
         $product_request = ProductRequest::get();
 
         return view('dashboard.index', compact('title', 'user', 'editor', 'articles_editor', 'admin', 'super_admin', 'products', 'articles', 'landingpage', 'product_request'));
+    }
+    
+    public function company_needs()
+    {
+        $title = 'Document';
+        $companydoc = CompanyDocument::all();
+    
+        return view('dashboard.company.index', compact('title', 'companydoc'));
+    }
+
+    public function company_needs_store(Request $request) {
+        $validated = request()->validate([
+            'name_doc' => 'required|string',
+            'category_doc' => 'required|string',
+            'file_doc' => 'required|file|mimes:pdf|max:4096',
+            'status' => 'required|string',
+        ]);
+
+        if ($request->hasfile('file_doc')) {
+            // $validated['file_doc'] = $request->file('file_doc');
+            $pdfFile = $request->file('file_doc');
+            $originalPdfName = $pdfFile->getClientOriginalName(); // Get the original name
+    
+            // Save the original name to the database
+            $validated['original_pdf_name'] = $originalPdfName;
+    
+            // Set the PDF file name explicitly (use the original name)
+            $pdfFileName = $originalPdfName; // Set the file name to the original name
+            $pdfFile->storeAs('company_files', $pdfFileName); // Store the file with the original name
+            $validated['file_doc'] = 'company_files/' . $pdfFileName; // Store the path in the database
+
+            CompanyDocument::create($validated);
+
+            return redirect()->route('company.index');
+
+        }
+    }
+
+    public function company_needs_delete($id)
+    {
+        $companydoc = CompanyDocument::find($id);
+        
+        if ($companydoc->file_doc != null) {
+            unlink(public_path('storage/' . $companydoc->file_doc));
+        }
+        if (Storage::disk('public')->exists($companydoc->file_doc)) {
+            Storage::disk('public')->delete($companydoc->file_doc);
+    }
+
+        $companydoc->delete();
+        return redirect()->route('company.index')->with('success', 'Data Dokumen Perusahaan berhasil dihapus!');
     }
 
     public function profile()

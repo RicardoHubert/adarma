@@ -77,6 +77,10 @@ Route::group(['prefix' => 'dashboard', 'middleware' => ['auth']], function () {
 // Dashboard Roles User
 Route::group(['prefix' => 'dashboard', 'middleware' => ['auth', 'role:super_admin|admin']], function () {
     Route::get('users', [DashboardController::class, 'users'])->name('users');
+    Route::get('/company', [DashboardController::class, 'company_needs'])->name('company.index');
+    Route::post('/company',[DashboardController::class, 'company_needs_store'])->name('companyfile.store');
+    Route::delete('/company/{id}',[DashboardController::class, 'company_needs_delete'])->name('companyfile.delete');
+
 });
 Route::group(['prefix' => 'dashboard', 'middleware' => ['auth', 'role:super_admin']], function () {
     Route::get('users/roles/{id}/edit', [DashboardController::class, 'roles_edit'])->name('roles.edit');

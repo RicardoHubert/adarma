@@ -20,7 +20,25 @@
             </span>
         </div> --}}
     </div>
+    <!-- <ul class="nav">
+        <li style="color:white;">
+            ===========
+        </li>
+    </ul> -->
     <ul class="nav">
+        
+    <li class="nav-item mb-1">
+                <a class="nav-link" data-toggle="collapse" href="#info" aria-expanded="false" aria-controls="info">
+                    <i class="icon-bag menu-icon"></i>
+                        <span class="menu-title">Info Company</span>
+                    <i class="menu-arrow"></i>
+                </a>            
+                <div class="collapse" id="info">
+                    <ul class="nav flex-column sub-menu">
+                        <li class="nav-item mb-1 @if ($title == 'Document') active @endif"> <a class="nav-link @if ($title == 'Document') active @endif" href="{{ route('company.index') }}">Document</a></li>
+                    </ul>
+                </div>
+            </li>
         <li class="nav-item mb-1 @if ($title == 'Dashboard') active @endif">
             <a class="nav-link @if ($title == 'Dashboard') active @endif" href="{{ route('dashboard') }}">
                 <i class="icon-box menu-icon"></i>
