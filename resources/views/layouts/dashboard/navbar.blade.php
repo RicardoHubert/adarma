@@ -36,9 +36,9 @@
             </li>
         </ul>
         <ul class="navbar-nav navbar-nav-right">
-            <li class="nav-item d-flex">
+            <!-- <li class="nav-item d-flex">
                 <button class="btn btn-primary"> Adarma Learning </button>
-            </li>
+            </li> -->
             <li class="nav-item dropdown d-flex">
                 <a class="nav-link count-indicator dropdown-toggle d-flex justify-content-center align-items-center" id="messageDropdown" href="#" data-toggle="dropdown">
                     <i class="icon-bell mx-0"></i>
