@@ -6,7 +6,7 @@
                 <img src="@if (isset($landingpage->img_logo))
                     {{ asset('storage/' . $landingpage->img_logo) }}
                 @else
-                    {{ asset('images/logo.png') }}
+                    {{ asset('images/logo_adarma.png') }}
                 @endif" width="100" height="40" alt="logo"/>
             </div>
         </a>
