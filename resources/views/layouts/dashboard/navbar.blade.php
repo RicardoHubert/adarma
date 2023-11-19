@@ -36,6 +36,9 @@
             </li>
         </ul>
         <ul class="navbar-nav navbar-nav-right">
+            <li class="nav-item d-flex">
+                <button class="btn btn-primary"> Adarma Learning </button>
+            </li>
             <li class="nav-item dropdown d-flex">
                 <a class="nav-link count-indicator dropdown-toggle d-flex justify-content-center align-items-center" id="messageDropdown" href="#" data-toggle="dropdown">
                     <i class="icon-bell mx-0"></i>
@@ -49,7 +52,7 @@
                     <i class="icon-cog"></i>
                 </a>
                 <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list" aria-labelledby="notificationDropdown">
-                    <p class="mb-0 font-weight-normal float-left dropdown-header">Settings</p>
+                    <p class="mb-0 font-weight-ninormal float-left dropdown-header">Settings</p>
                     <a class="dropdown-item preview-item weight-light small-text text-muted mb-0" href="{{ route('profile') }}">               
                         <i class="icon-head"></i> Profile
                     </a>
