@@ -17,7 +17,7 @@ class CreateCompanyDocumentsTable extends Migration
             $table->id();
             $table->string('name_doc');
             $table->string('category_doc');
-            $table->string('types_doc');
+            $table->string('badan_usaha');
             $table->string('file_doc');
             $table->string('status');
             $table->timestamps();
