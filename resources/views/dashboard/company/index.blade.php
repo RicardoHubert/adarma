@@ -27,7 +27,7 @@
 											Kategori Dokumen
 											</th>
                                             <th>
-                                            Jenis Dokumen
+                                            Badan Usaha
                                             </th>
 											<th class="font-weight-bold text-black">
 											Action
@@ -44,7 +44,7 @@
 											{{$row->category_doc}}
 											</td>
                                             <td>
-                                              {{$row->types_doc}}  
+                                              {{$row->badan_usaha}}  
                                             </td>	
 											<td class="d-flex">
                                     <form action="{{ route('companyfile.delete', $row->id) }}" method="POST">
@@ -157,7 +157,7 @@
 												<label for="category_doc" class="col-sm-12 col-form-label">Category of Document</label>
 															<select name="category_doc" class="form-control @error('category_doc') border-danger @enderror py-3" id="category_doc">
 																<option selected disabled>--- Choose One ---</option>
-																<option value="General Document"> General Document </option>
+																<option value="Internal Document"> Internal Document </option>
                                                                 <option value="Supplier Document"> Supplier Document </option>
                                                                 <option value="Buyer Document"> Buyer Document </option>
 																<option value="Finance Document"> Finance Document </option>
@@ -168,14 +168,16 @@
 														@enderror
 												</div>
 
-                                                <label for="types_doc" class="col-sm-12 col-form-label">Types of Dokumen</label>
-															<select name="types_doc" class="form-control @error('types_doc') border-danger @enderror py-3" id="types_doc">
+                                                <label for="badan_usaha" class="col-sm-12 col-form-label">Badan Usaha</label>
+															<!-- <select name="badan_usaha" class="form-control @error('badan_usaha') border-danger @enderror py-3" id="badan_usaha">
 																<option selected disabled>--- Choose One ---</option>
 																<option value="internal"> Internal </option>
 																<option value="Supplier Document"> Supplier Document </option>
 																<option value="Buyer Document"> Buyer Document </option>
-															</select>
-														@error('category_doc')
+															</select> -->
+
+                                                            <input type="badan_usaha" class="form-control" id="badan_usaha" name="badan_usaha" />
+														@error('badan_usaha')
 															<span class="text-danger">{{ $message }}</span>
 														@enderror
 												</div>

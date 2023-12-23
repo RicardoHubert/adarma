@@ -52,6 +52,7 @@ class DashboardController extends Controller
         $validated = request()->validate([
             'name_doc' => 'required|string',
             'category_doc' => 'required|string',
+            'badan_usaha' => 'required|string',
             'file_doc' => 'required|file|mimes:pdf|max:4096',
             'status' => 'required|string',
         ]);
