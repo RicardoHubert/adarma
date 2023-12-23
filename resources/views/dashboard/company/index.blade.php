@@ -26,6 +26,9 @@
 											<th class="font-weight-bold text-black">
 											Kategori Dokumen
 											</th>
+                                            <th>
+                                            Jenis Dokumen
+                                            </th>
 											<th class="font-weight-bold text-black">
 											Action
 											</th>
@@ -39,7 +42,10 @@
 											</td>
 											<td>
 											{{$row->category_doc}}
-											</td>	
+											</td>
+                                            <td>
+                                              {{$row->types_doc}}  
+                                            </td>	
 											<td class="d-flex">
                                     <form action="{{ route('companyfile.delete', $row->id) }}" method="POST">
                                          @csrf
@@ -51,7 +57,7 @@
                                     <a href="{{ asset('storage/' . $row->file_doc) }}" class="btn btn-success" target="_blank">
                                         Preview PDF
                                     </a>
-										<td>
+                                        </td>
 										</tr>					
 									</tbody>
 									@endforeach
@@ -71,13 +77,13 @@
                                     </form>
                                 @endif
 								<button type="button" class="btn btn-primary mr-3" data-toggle="modal" data-target="#addDocument">Add Document</button>
-                                <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#profileModal">Change</button>
+                                <!-- <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#profileModal">Change</button> -->
                             </div>
                             <!-- Modal Profile -->
                             <form action="{{ route('profile.update') }}" method="POST" enctype="multipart/form-data">
                                 @csrf
                                 @method('PUT')
-                                <div class="modal fade" id="profileModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <!-- <div class="modal fade" id="profileModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                     <div class="modal-dialog modal-dialog-scrollable" role="document">
                                         <div class="modal-content">
                                             <div class="modal-header">
@@ -118,7 +124,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                </div>
+                                </div> -->
                             </form>
 
 							
@@ -152,8 +158,22 @@
 															<select name="category_doc" class="form-control @error('category_doc') border-danger @enderror py-3" id="category_doc">
 																<option selected disabled>--- Choose One ---</option>
 																<option value="General Document"> General Document </option>
+                                                                <option value="Supplier Document"> Supplier Document </option>
+                                                                <option value="Buyer Document"> Buyer Document </option>
 																<option value="Finance Document"> Finance Document </option>
 																<option value="Award Document"> Award Document </option>
+															</select>
+														@error('category_doc')
+															<span class="text-danger">{{ $message }}</span>
+														@enderror
+												</div>
+
+                                                <label for="types_doc" class="col-sm-12 col-form-label">Types of Dokumen</label>
+															<select name="types_doc" class="form-control @error('types_doc') border-danger @enderror py-3" id="types_doc">
+																<option selected disabled>--- Choose One ---</option>
+																<option value="internal"> Internal </option>
+																<option value="Supplier Document"> Supplier Document </option>
+																<option value="Buyer Document"> Buyer Document </option>
 															</select>
 														@error('category_doc')
 															<span class="text-danger">{{ $message }}</span>
