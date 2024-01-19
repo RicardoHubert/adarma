@@ -89,6 +89,15 @@
     <!-- Custom js for this page-->
     <script src="{{ asset('vendors/js/dashboard.js') }}"></script>
     <!-- End custom js for this page-->
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-8CN1WEHYTF"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'G-8CN1WEHYTF');
+    </script>
 </body>
 
 </html>
